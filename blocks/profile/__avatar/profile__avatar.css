@@ -2,3 +2,9 @@
   border-radius: 50%;
   width: 120px;
 }
+
+@media screen and (max-width: 425px) {
+  .profile__avatar {
+  	align-self: center;
+  }	
+}

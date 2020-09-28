@@ -17,6 +17,7 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__wrapper/profile__wrapper.css);
+@import url(../blocks/profile/__edit-button-image/profile__edit-button-image.css);
 
 /* Стили блока elements */
 @import url(../blocks/elements/elements.css);

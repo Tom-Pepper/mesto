@@ -4,3 +4,10 @@
   max-width: 882px;
   display: flex;
 }
+
+@media screen and (max-width: 425px) {
+  .footer {
+  	padding-left: 19px;
+  	padding-bottom: 36px;
+  }	
+}
