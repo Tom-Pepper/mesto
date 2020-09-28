@@ -2,8 +2,8 @@
 
 ### Обзор
 
-* Figma
-* Картинки
+[Посмотреть проект в браузере](https://tom-pepper.github.io/mesto/index.html)
+
 
 **Figma**
 
