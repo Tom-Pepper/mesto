@@ -1,0 +1,15 @@
+.popup__job {
+  width: 358px;
+  height: 27px;
+  align-self: center;
+  border: none;
+  outline: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 592px) {
+  .popup__job {
+    width: 238px;
+  }  
+}

@@ -4,7 +4,8 @@
   height: 50px;
   background-size: cover;
   border: none;
-  background-color: black;
+  outline: none;
+  background-color: transparent;
   transition: opacity 0.2s ease-in-out 0.2s;
 }
 
