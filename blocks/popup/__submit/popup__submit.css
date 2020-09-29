@@ -8,9 +8,7 @@
   border-bottom-left-radius: 2px;
   max-width: 358px;
   padding: 0;
-  margin: 0;
-  margin-left: 36px;
-  margin-right: 36px;
+  margin: 0 36px 36px;
   transition: opacity 0.2s ease-in-out 0.2s;
 }
 
@@ -21,7 +19,7 @@
 
 @media screen and (max-width: 592px) {
   .popup__submit {
-    margin: 0 22px;
+    margin: 0 22px 25px;
     width: 238px;
   }  
 }
