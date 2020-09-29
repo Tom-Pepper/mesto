@@ -4,7 +4,7 @@
   align-self: center;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 688px) {
   .profile__info {
   	margin: 0;
     max-width: 280px;

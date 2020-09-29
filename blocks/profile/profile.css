@@ -7,8 +7,17 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 904px) {
+  .profile {
+  	margin-left: 19px;
+  	margin-right: 19px;
+  }	
+}
+
+@media screen and (max-width: 688px) {
   .profile {
   	flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
   }	
 }

@@ -4,6 +4,7 @@
   height: 24px;
   border: none;
   background-color: black;
+  background-size: contain;
   margin-left: 17px;
   transition: opacity 0.2s ease-in-out 0.2s;
 }
@@ -13,8 +14,10 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 688px) {
   .profile__edit-button {
   	padding-left: 7px;
+    width: 18px;
+    height: 18px;
   }
 }
