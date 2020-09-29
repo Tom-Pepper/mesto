@@ -14,3 +14,21 @@
   	width: 300px;
   }	
 }
+
+@media screen and (max-width: 768px) {
+  .element__title {
+    width: 200px;
+  } 
+}
+
+@media screen and (max-width: 562px) {
+  .element__title {
+    width: 300px;
+  } 
+}
+
+@media screen and (max-width: 425px) {
+  .element__title {
+    width: 200px;
+  } 
+}
