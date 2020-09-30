@@ -7,6 +7,7 @@
   padding-left: 36px;
   padding-bottom: 54px;
   max-width: 330px;
+  height: 23px;
   margin: 0;
 }
 
@@ -14,5 +15,6 @@
   .popup__title {
     font-size: 18px;
     padding: 25px 22px 75px;  
+    height: 22px;
   }  
 }
