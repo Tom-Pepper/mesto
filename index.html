@@ -9,7 +9,7 @@
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип проекта 'Место'">
     </header>
     <main class="content">
       <section class="profile">
@@ -18,52 +18,52 @@
           <div class="profile__info">
             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
             <p class="profile__info-job">Исследователь океана</p>
-            <button class="profile__edit-button"></button>
+            <button type="button" class="profile__edit-button"></button>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <figure class="element">
           <img class="element__image" src="./images/karachaevsk.jpg" alt="Кирпичный заброшенный храм на фоне гор.">
           <figcaption class="element__caption">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
           <img class="element__image" src="./images/elbrus-mtn.jpg" alt="Пик горы Эльбрус вдалеке, вид на закате.">
           <figcaption class="element__caption">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
           <img class="element__image" src="./images/dombay.jpg" alt="Заснеженные пики Домбая, вид от леса.">
           <figcaption class="element__caption">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
           <img class="element__image" src="./images/karachaevo-cherkessia.jpg" alt="Извилистая афальтровая дорога в лесах. На фоне пик горы.">
           <figcaption class="element__caption">
             <h2 class="element__title">Карачаево- Черкессия</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
           <img class="element__image" src="./images/altay.jpg" alt="Табун диких лошадей на грунтовой дороге. На заднем фоне Уральские горы.">
           <figcaption class="element__caption">
             <h2 class="element__title">Алтай</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
         <figure class="element">
           <img class="element__image" src="./images/onezhskoe-ozero.jpg" alt="Пик горы Эльбрус вдалеке, вид на закате.">
           <figcaption class="element__caption">
             <h2 class="element__title">Онежское озеро</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </figcaption>
         </figure>
       </section>
@@ -72,19 +72,17 @@
       <p class="footer__copyright">&copy; 2020. Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
-        <button class="popup__close"></button>
+        <button type="button" class="popup__close"></button>
+        <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
         <form class="popup__form">
-          <h2 class="popup__title">Редактировать профиль</h2>
           <input type="text" class="popup__name">
           <input type="text" class="popup__job">
-          <button class="popup__submit" type="submit">
-            <p class="popup__submit-text">Сохранить</p>
-          </button>
+          <button type="submit" class="popup__submit">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
   </div>
   <script src="./scripts/index.js"></script>
 </body>

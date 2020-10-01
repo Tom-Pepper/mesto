@@ -1,5 +1,5 @@
 .popup__name {
-  width: 358px;
+  width: 100%;
   align-self: center;
   padding: 0;
   margin-bottom: 29px;
@@ -10,10 +10,4 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;	
-}
-
-@media screen and (max-width: 592px) {
-  .popup__name {
-    width: 238px;
-  }  
 }

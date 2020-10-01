@@ -1,34 +1,10 @@
 .element__title {
   font-size: 24px;
-  width: 210px;
+  width: calc(100% - 38px);
   margin: 0;
   line-height: 29px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-@media screen and (max-width: 904px) {
-  .element__title {
-  	width: 300px;
-  }	
-}
-
-@media screen and (max-width: 768px) {
-  .element__title {
-    width: 200px;
-  } 
-}
-
-@media screen and (max-width: 562px) {
-  .element__title {
-    width: 300px;
-  } 
-}
-
-@media screen and (max-width: 425px) {
-  .element__title {
-    width: 200px;
-  } 
 }

@@ -7,9 +7,9 @@
   background-color: white;
   align-self: center;
   transition: opacity 0.2s ease-in-out 0.2s;
+  cursor: pointer;
 }
 
 .element__like:hover {
-  cursor: pointer;
   opacity: 0.6;
 }
