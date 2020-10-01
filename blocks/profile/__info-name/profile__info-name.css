@@ -6,6 +6,7 @@
   margin: 0;
   padding-bottom: 16px;
   width: 100%;
+  max-width: 295px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -20,5 +21,6 @@
     padding-top: 14px;
     padding-bottom: 14px;
     height: 38px;
+    max-width: 189px;
   }	
 }
