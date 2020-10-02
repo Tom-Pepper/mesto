@@ -3,6 +3,7 @@
   max-width: 430px;
   background-color: white;
   padding: 34px 36px 36px;
+  box-sizing: border-box;
   margin: 0 19px;
   position: relative;
   border-radius: 10px;
