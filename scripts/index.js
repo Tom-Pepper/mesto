@@ -25,14 +25,22 @@ const initialCards = [
     link: './images/onezhskoe-ozero.jpg'
   }
 ];
+//------
 
-const elementTemplate = document.querySelector('.elements__template').content;
-const elementPosition = document.querySelector('.elements');
+const cardTemplate = document.querySelector('.elements__template');
+const cardPosition = document.querySelector('.elements');
 
 const renderCards = () => {
-  initialCards.map(element => {
+  const cards = initialCards.map(initialCard => getCard(initialCard));
+  cardPosition.append(...cards);
+}
 
-  })
+const getCard = (data) => {
+  const card = cardTemplate.content.cloneNode(true);
+  card.querySelector('.element__title').innerText = data.name;
+  card.querySelector('.element__image').src = data.link;
+
+  return card;
 }
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
@@ -41,7 +49,6 @@ const popup = document.querySelector(".popup");
 const addPlacePopup = document.querySelector(".popup-new-place");
 const buttonClosePopup = popup.querySelector(".popup__close");
 const buttonCloseAddPlacePopup = document.querySelector(".popup-new-place__close");
-const likeButton = document.querySelector(".element__like-button");
 
 const formElement = popup.querySelector(".popup__form");
 const nameInput = popup.querySelector(".popup__name");
@@ -70,6 +77,7 @@ buttonEditProfile.addEventListener('click', profilePopupOpen);
 buttonClosePopup.addEventListener('click', profilePopupClose);
 popup.addEventListener('click', closePopupLayerClick);
 //------
+
 //Изменение имени и профессии профиля
 function formSubmitHandler (evt) {
   evt.preventDefault();
@@ -82,12 +90,6 @@ function formSubmitHandler (evt) {
 }
 formElement.addEventListener('submit', formSubmitHandler);
 //------
-
-//Смена цвета сердечка при клике на лайк
-likeButton.addEventListener('click', function (evt) {
-  const clickTarget = evt.target;
-  clickTarget.classList.toggle('element__like-button_active');
-});
 
 //Открытие и закрытие поп-апа добавления новых карточек
 const addPlacePopupOpen = () => {
@@ -105,3 +107,5 @@ buttonAddPlace.addEventListener('click', addPlacePopupOpen);
 buttonCloseAddPlacePopup.addEventListener('click', addPlacePopupClose);
 addPlacePopup.addEventListener('click', addPLacePopupLayerClickClosure);
 //------
+
+renderCards();
