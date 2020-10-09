@@ -32,6 +32,7 @@ const elementsPoition = document.querySelector('.elements');
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const buttonClosePopup = popup.querySelector(".popup__close");
+const likeButton = document.querySelector('.element__like-button');
 
 const formElement = popup.querySelector(".popup__form");
 const nameInput = popup.querySelector(".popup__name");
@@ -75,3 +76,7 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 //------
 
+likeButton.addEventListener('click', function (evt) {
+  const clickTarget = evt.target;
+  clickTarget.classList.toggle('element__like-button_active');
+});
