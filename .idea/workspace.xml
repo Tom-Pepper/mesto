@@ -20,14 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/element/__like/element__like.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/__like-button/element__like-button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__container/popup__container.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/_is-opened/popup_is-opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_is-opened/popup_is-opened.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +59,7 @@
       <updated>1601709890912</updated>
       <workItem from="1601709894121" duration="933000" />
       <workItem from="1601884560722" duration="29000" />
-      <workItem from="1602162503109" duration="6152000" />
+      <workItem from="1602162503109" duration="6253000" />
     </task>
     <servers />
   </component>
