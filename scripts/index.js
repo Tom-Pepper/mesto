@@ -40,9 +40,13 @@ const getCard = (data) => {
   const card = cardTemplate.content.cloneNode(true);
   card.querySelector('.element__title').innerText = data.name;
   card.querySelector('.element__image').src = data.link;
-  card.querySelector('.element__like-button').addEventListener('click', function (evt) {
+  card.querySelector('.element__like-button').addEventListener('click', (evt) => {
     const likeTarget = evt.target;
     likeTarget.classList.toggle('element__like-button_active');
+  })
+  card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
+    const deleteTarget = evt.target;
+    deleteTarget.closest('.element').remove();
   })
 
   return card;
