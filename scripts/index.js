@@ -1,16 +1,16 @@
 //Массив для вставки карточек при загрузке сайта
 const initialCards = [
   {
-    name: 'Карачаевск',
-    link: './images/karachaevsk.jpg'
+    name: 'Остров Ольхон',
+    link: './images/olkhon-island.jpg'
   },
   {
     name: 'Гора Эльбрус',
     link: './images/elbrus-mtn.jpg'
   },
   {
-    name: 'Домбай',
-    link: './images/dombay.jpg'
+    name: 'Магадан',
+    link: './images/magadan.jpg'
   },
   {
     name: 'Карачаево- Черкессия',
