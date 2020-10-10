@@ -27,6 +27,7 @@ const initialCards = [
 ];
 //------
 
+//Первичная загрузка карточек из массива на главную страницу
 const cardTemplate = document.querySelector('.elements__template');
 const cardPosition = document.querySelector('.elements');
 
@@ -39,9 +40,14 @@ const getCard = (data) => {
   const card = cardTemplate.content.cloneNode(true);
   card.querySelector('.element__title').innerText = data.name;
   card.querySelector('.element__image').src = data.link;
+  card.querySelector('.element__like-button').addEventListener('click', function (evt) {
+    const likeTarget = evt.target;
+    likeTarget.classList.toggle('element__like-button_active');
+  })
 
   return card;
 }
+//------
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const buttonAddPlace = document.querySelector(".profile__add-button");
