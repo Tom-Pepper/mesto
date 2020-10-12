@@ -20,14 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/popup-image/__close/popup-image__close.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup-image/__container/popup-image__container.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup-image/__photo/popup-image__photo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup-image/__title/popup-image__title.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup-image/popup-image.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/element/__image/element__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/__image/element__image.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/elbrus-mtn.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/elbrus-mtn.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-image/__close/popup-image__close.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-image/__close/popup-image__close.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-image/__container/popup-image__container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-image/__container/popup-image__container.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-image/__photo/popup-image__photo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-image/__title/popup-image__title.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-image/__title/popup-image__title.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-image/popup-image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-image/popup-image.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
@@ -80,7 +78,7 @@
       <updated>1601709890912</updated>
       <workItem from="1601709894121" duration="933000" />
       <workItem from="1601884560722" duration="29000" />
-      <workItem from="1602162503109" duration="22680000" />
+      <workItem from="1602162503109" duration="26412000" />
     </task>
     <servers />
   </component>

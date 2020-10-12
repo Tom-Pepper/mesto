@@ -25,9 +25,28 @@ const initialCards = [
     link: './images/onezhskoe-ozero.jpg'
   }
 ];
+//Переменные
+const buttonEditProfile = document.querySelector(".profile__edit-button");
+const buttonAddPlace = document.querySelector(".profile__add-button");
+const popup = document.querySelector(".popup");
+const addPlacePopup = document.querySelector(".popup-new-place");
+const buttonClosePopup = popup.querySelector(".popup__close");
+const buttonCloseAddPlacePopup = document.querySelector(".popup-new-place__close");
+
+const formElement = popup.querySelector(".popup__form");
+const nameInput = popup.querySelector(".popup__name");
+const jobInput = popup.querySelector(".popup__job");
+const nameToEdit = document.querySelector(".profile__info-name");
+const jobToEdit = document.querySelector(".profile__info-job");
+
+const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form');
+const placeDescInput = addPlacePopup.querySelector('.popup-new-place__description');
+const placeImgInput = addPlacePopup.querySelector('.popup-new-place__image-link');
 
 const cardTemplate = document.querySelector('.elements__template');
 const cardPosition = document.querySelector('.elements');
+
+const imageFullSize = document.querySelector('.popup-image');
 
 //Первичная загрузка карточек из массива на главную страницу
 const renderCards = () => {
@@ -48,26 +67,11 @@ const getCard = (data) => {
     const deleteTarget = evt.target;
     deleteTarget.closest('.element').remove();
   })
+  card.querySelector('.element__image').addEventListener('click', () => {
+    imageFullSize.classList.add('popup_is-opened');
+  })
   return card;
 }
-
-//Переменные
-const buttonEditProfile = document.querySelector(".profile__edit-button");
-const buttonAddPlace = document.querySelector(".profile__add-button");
-const popup = document.querySelector(".popup");
-const addPlacePopup = document.querySelector(".popup-new-place");
-const buttonClosePopup = popup.querySelector(".popup__close");
-const buttonCloseAddPlacePopup = document.querySelector(".popup-new-place__close");
-
-const formElement = popup.querySelector(".popup__form");
-const nameInput = popup.querySelector(".popup__name");
-const jobInput = popup.querySelector(".popup__job");
-const nameToEdit = document.querySelector(".profile__info-name");
-const jobToEdit = document.querySelector(".profile__info-job");
-
-const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form');
-const placeDescInput = addPlacePopup.querySelector('.popup-new-place__description');
-const placeImgInput = addPlacePopup.querySelector('.popup-new-place__image-link');
 
 //Открытие поп-апа редактировния профиля
 const profilePopupOpen = () =>  {
