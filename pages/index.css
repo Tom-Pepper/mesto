@@ -45,7 +45,11 @@
 
 /* Cтили фото в полном размере (pop-up)*/
 @import url(../blocks/popup-image/popup-image.css);
-@import url(../blocks/popup-image/__close/popup-image__close.css);
 @import url(../blocks/popup-image/__container/popup-image__container.css);
+@import url(../blocks/popup-image/__close/popup-image__close.css);
+@import url(../blocks/popup-image/__content-container/popup-image__content-container.css);
+@import url(../blocks/popup-image/__photo/popup-image__photo.css);
+@import url(../blocks/popup-image/__preview/popup-image__preview.css);
 @import url(../blocks/popup-image/__title/popup-image__title.css);
+
 @import url(../blocks/popup/_is-opened/popup_is-opened.css);

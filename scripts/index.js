@@ -47,13 +47,17 @@ const cardTemplate = document.querySelector('.elements__template');
 const cardPosition = document.querySelector('.elements');
 
 const imageFullSize = document.querySelector('.popup-image');
+const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
+const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
+const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
 //Первичная загрузка карточек из массива на главную страницу
 const renderCards = () => {
   const cards = initialCards.map(initialCard => getCard(initialCard));
   cardPosition.append(...cards);
 }
-//Функция доюавления карточки, включая работоспособность кнопки лайка и удаления конкретной карточки
+// Функция добавления карточки, включая работоспособность кнопки лайка и удаления конкретной карточки, открытия
+// изображения при клике по фото
 const getCard = (data) => {
   const card = cardTemplate.content.cloneNode(true);
   card.querySelector('.element__title').innerText = data.name;
@@ -69,8 +73,22 @@ const getCard = (data) => {
   })
   card.querySelector('.element__image').addEventListener('click', () => {
     imageFullSize.classList.add('popup_is-opened');
+    fullSizePhoto.src = data.link;
+    fullSizePhoto.alt = data.name;
+    imageFullSizeTitle.innerText = data.name;
   })
   return card;
+}
+
+// Закрытие окна просмотра фото карточки
+const closeFullSizeImage = () => {
+  imageFullSize.classList.remove('popup_is-opened');
+}
+// Закрытие окна просмотра фото карточки при клике вне изображения
+const closeImgFullSizeLayerClick = (event) => {
+  if (event.target === event.currentTarget) {
+    closeFullSizeImage();
+  }
 }
 
 //Открытие поп-апа редактировния профиля
@@ -90,10 +108,6 @@ const closePopupLayerClick = (event) => {
   }
 }
 
-buttonEditProfile.addEventListener('click', profilePopupOpen);
-buttonClosePopup.addEventListener('click', profilePopupClose);
-popup.addEventListener('click', closePopupLayerClick);
-
 //Изменение имени и профессии профиля
 const formSubmitHandler = (evt) => {
   evt.preventDefault();
@@ -104,8 +118,6 @@ const formSubmitHandler = (evt) => {
   nameInput.value ='';
   jobInput.value ='';
 }
-
-formElement.addEventListener('submit', formSubmitHandler);
 
 //Открытие поп-апа добавления новых карточек
 const addPlacePopupOpen = () => {
@@ -122,10 +134,6 @@ const addPLacePopupLayerClickClosure = (event) => {
   }
 }
 
-buttonAddPlace.addEventListener('click', addPlacePopupOpen);
-buttonCloseAddPlacePopup.addEventListener('click', addPlacePopupClose);
-addPlacePopup.addEventListener('click', addPLacePopupLayerClickClosure);
-
 //Функция добавления новой карточки
 const addCard = (evt) => {
   evt.preventDefault();
@@ -140,5 +148,18 @@ const addCard = (evt) => {
     placeDescInput.value = '';
     placeImgInput.value = '';
 }
+
+buttonEditProfile.addEventListener('click', profilePopupOpen);
+buttonClosePopup.addEventListener('click', profilePopupClose);
+popup.addEventListener('click', closePopupLayerClick);
+
+buttonAddPlace.addEventListener('click', addPlacePopupOpen);
+buttonCloseAddPlacePopup.addEventListener('click', addPlacePopupClose);
+addPlacePopup.addEventListener('click', addPLacePopupLayerClickClosure);
+imageFullSize.addEventListener('click', closeImgFullSizeLayerClick);
+
+fullSizeCloseButton.addEventListener('click', closeFullSizeImage);
+
+formElement.addEventListener('submit', formSubmitHandler);
 formAddPlace.addEventListener('submit', addCard);
 renderCards();
