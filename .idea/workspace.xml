@@ -22,6 +22,10 @@
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blocks/popup-image/popup-image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-image/popup-image.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup-new-place/popup-new-place.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup-new-place/popup-new-place.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_is-opened/popup_is-opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_is-opened/popup_is-opened.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +75,7 @@
       <updated>1601709890912</updated>
       <workItem from="1601709894121" duration="933000" />
       <workItem from="1601884560722" duration="29000" />
-      <workItem from="1602162503109" duration="33610000" />
+      <workItem from="1602162503109" duration="34384000" />
     </task>
     <servers />
   </component>
