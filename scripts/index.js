@@ -73,10 +73,10 @@ const createCard = (data) => {
     deleteTarget.closest('.element').remove();
   })
   elementImage.addEventListener('click', () => {
-    imageFullSize.classList.add('popup_is-opened');
     fullSizePhoto.src = data.link;
     fullSizePhoto.alt = data.name;
     imageFullSizeTitle.innerText = data.name;
+    popupOpen(imageFullSize);
   })
   return card;
 }
@@ -86,7 +86,7 @@ const formSubmitHandler = (evt) => {
   evt.preventDefault();
   nameToEdit.textContent = nameInput.value;
   jobToEdit.textContent = jobInput.value;
-  profilePopupClose();
+  popupClose();
 
   nameInput.value ='';
   jobInput.value ='';
@@ -101,7 +101,7 @@ const addCardHandler = (evt) => {
   });
   cardPosition.prepend(newPlace);
 
-  profilePopupClose();
+  popupClose();
 
   placeDescInput.value = '';
   placeImgInput.value = '';
@@ -111,15 +111,16 @@ const addCardHandler = (evt) => {
 const profilePopupOpen = () =>  {
   nameInput.value = nameToEdit.textContent;
   jobInput.value = jobToEdit.textContent;
-  popup.classList.add("popup_is-opened");
+  // popup.classList.add("popup_is-opened");
+  popupOpen(popup);
 }
-//Открытие поп-апа добавления новых карточек
-const addPlacePopupOpen = () => {
-  addPlacePopup.classList.add("popup_is-opened");
+//Открытие поп-апов
+const popupOpen = (popup) => {
+  popup.classList.add("popup_is-opened");
 }
 
 //Закрытие поп-апов
-const profilePopupClose = () =>  {
+const popupClose = () =>  {
   popup.classList.remove("popup_is-opened");
   imageFullSize.classList.remove('popup_is-opened');
   addPlacePopup.classList.remove("popup_is-opened");
@@ -127,20 +128,20 @@ const profilePopupClose = () =>  {
 //Закрытие поп-апов при клике по области вне модального окна
 const closePopupLayerClick = (event) => {
   if (event.target === event.currentTarget) {
-    profilePopupClose();
+    popupClose();
   }
 }
 
 buttonEditProfile.addEventListener('click', profilePopupOpen);
-buttonClosePopup.addEventListener('click', profilePopupClose);
+buttonClosePopup.addEventListener('click', popupClose);
 popup.addEventListener('click', closePopupLayerClick);
 
-buttonAddPlace.addEventListener('click', addPlacePopupOpen);
-buttonCloseAddPlacePopup.addEventListener('click', profilePopupClose);
+buttonAddPlace.addEventListener('click', () => popupOpen(addPlacePopup));
+buttonCloseAddPlacePopup.addEventListener('click', popupClose);
 addPlacePopup.addEventListener('click', closePopupLayerClick);
 imageFullSize.addEventListener('click', closePopupLayerClick);
 
-fullSizeCloseButton.addEventListener('click', profilePopupClose);
+fullSizeCloseButton.addEventListener('click', popupClose);
 
 formElement.addEventListener('submit', formSubmitHandler);
 formAddPlace.addEventListener('submit', addCardHandler);
