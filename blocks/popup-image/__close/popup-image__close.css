@@ -1,5 +1,5 @@
 @media screen and (max-width: 592px) {
-  .popup__close {
+  .popup-image__close {
     right: -40px;
     top: -40px;
   }
