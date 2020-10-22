@@ -26,6 +26,9 @@ const initialCards = [
   }
 ];
 //Переменные
+const profileEditForm = document.forms['profile-edit'];
+const addPlaceForm = document.forms['profile-add-place'];
+
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const buttonAddPlace = document.querySelector(".profile__add-button");
 const popup = document.querySelector(".popup");
@@ -88,8 +91,7 @@ const formSubmitHandler = (evt) => {
   jobToEdit.textContent = jobInput.value;
   popupToggle(popup);
 
-  nameInput.value ='';
-  jobInput.value ='';
+  profileEditForm.reset();
 }
 
 //Функция добавления новой карточки
@@ -103,8 +105,7 @@ const addCardHandler = (evt) => {
 
   popupToggle(addPlacePopup);
 
-  placeDescInput.value = '';
-  placeImgInput.value = '';
+  addPlaceForm.reset();
 }
 
 //Открытие поп-апа редактировния профиля

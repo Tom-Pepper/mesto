@@ -16,7 +16,7 @@
 
 ### "Пощупать проект"
 
-[Посмотреть проект в браузере](https://tom-pepper.github.io/mesto/index.html)
+[Открыть сайт в браузере](https://tom-pepper.github.io/mesto/index.html)
 ---
 
 ### Используемые технологии:
