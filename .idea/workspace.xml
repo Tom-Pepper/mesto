@@ -20,14 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blocks/error/error.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/validate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__button/_disabled/popup__button_disabled.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__error/_visible/popup__error_visible.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blocks/popup/__input/_type/popup__input_type_error.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/__job/popup__job.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__job/popup__job.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/popup/__name/popup__name.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__name/popup__name.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/error/error.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/error/error.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__submit/popup__submit.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__button/popup__button.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/validate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +83,7 @@
       <workItem from="1602579735330" duration="4828000" />
       <workItem from="1602686096868" duration="7150000" />
       <workItem from="1603382738032" duration="17000" />
-      <workItem from="1603382798049" duration="6227000" />
+      <workItem from="1603382798049" duration="26817000" />
     </task>
     <servers />
   </component>
@@ -101,6 +103,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="450" y="109" key="RollbackChangesDialog" timestamp="1603697774745">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="450" y="109" key="RollbackChangesDialog/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1603697774745" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1603697815849">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1603697815849" />
     <state x="346" y="102" width="700" height="530" key="recent.locations.popup" timestamp="1602231637520">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

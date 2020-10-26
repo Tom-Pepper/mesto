@@ -14,7 +14,3 @@
 .popup__input:last-of-type {
   margin-bottom: 48px;
 }
-
-.popup__input:invalid {
-  border-bottom: 1px solid #FF0000;
-}

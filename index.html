@@ -48,13 +48,13 @@
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
         <form name="profile-edit" method="post" class="popup__form" novalidate>
-          <input required name="profile-name" type="text" class="popup__name popup__input" id="edit-profile-name" placeholder="Имя"
+          <input required name="profile-name" type="text" class="popup__name popup__input" placeholder="Имя"
                  minlength="2" maxlength="40">
-          <span id="edit-profile-name-error" class="error"></span>
-          <input required name="profile-job" type="text" class="popup__job popup__input" id="edit-profile-job"
-                 placeholder="О себе" minlength="2" maxlength="200">
-          <span id="edit-profile-job-error" class="error"></span>
-          <button type="submit" class="popup__submit">Сохранить</button>
+          <span id="profile-name-error" class="error"></span>
+          <input required name="profile-job" type="text" class="popup__job popup__input" placeholder="О себе"
+                 minlength="2" maxlength="200">
+          <span id="profile-job-error" class="error"></span>
+          <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
     </div>
@@ -65,12 +65,12 @@
         <h2 class="popup__title">Новое место</h2>
         <form name="profile-add-place" method="post" class="popup-new-place__form popup__form" novalidate>
           <input required name="place-name" type="text" class="popup-new-place__description popup__input popup__name"
-                 id="add-place-name" placeholder="Название" minlength="2" maxlength="30">
-          <span id="add-place-name-error" class="error"></span>
+                 placeholder="Название" minlength="2" maxlength="30">
+          <span id="place-name-error" class="error"></span>
           <input required name="place-link" type="url" class="popup-new-place__image-link popup__input popup__job"
-                 id="add-place-link" placeholder="Ссылка на картинку">
-          <span id="add-place-link-error" class="error"></span>
-          <button type="submit" class="popup__submit">Сохранить</button>
+                 placeholder="Ссылка на картинку">
+          <span id="place-link-error" class="error"></span>
+          <button type="submit" class="popup__button">Создать</button>
         </form>
       </div>
     </div>

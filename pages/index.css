@@ -38,11 +38,13 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__name/popup__name.css);
-@import url(../blocks/popup/__job/popup__job.css);
-@import url(../blocks/popup/__submit/popup__submit.css);
+@import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup-new-place/popup-new-place.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
+
 
 /* Cтили фото в полном размере (pop-up)*/
 @import url(../blocks/popup-image/popup-image.css);
