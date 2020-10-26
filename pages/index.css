@@ -42,6 +42,7 @@
 @import url(../blocks/popup/__job/popup__job.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup-new-place/popup-new-place.css);
+@import url(../blocks/popup/__input/popup__input.css);
 
 /* Cтили фото в полном размере (pop-up)*/
 @import url(../blocks/popup-image/popup-image.css);

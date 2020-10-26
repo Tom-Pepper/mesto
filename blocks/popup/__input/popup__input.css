@@ -1,13 +1,20 @@
-.popup__job {
+.popup__input {
   width: 100%;
   align-self: center;
+  padding: 0 0 13px 0;
+  margin-bottom: 29px;
   border: none;
-  padding: 0;
-  padding-bottom: 13px;
   outline: rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 47px;
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
+}
+
+.popup__input:last-of-type {
+  margin-bottom: 48px;
+}
+
+.popup__input:invalid {
+  border-bottom: 1px solid #FF0000;
 }
