@@ -127,9 +127,16 @@ const closePopupLayerClick = (event) => {
   }
 }
 
+function escKeyHandler(evt) {
+  if (evt.key === 'Escape') {
+    popupToggle(evt);
+  }
+}
+
 buttonEditProfile.addEventListener('click', openProfilePopup);
 buttonClosePopup.addEventListener('click', () => popupToggle(popup) );
 popup.addEventListener('click', closePopupLayerClick);
+
 
 buttonAddPlace.addEventListener('click', () => popupToggle(addPlacePopup));
 buttonCloseAddPlacePopup.addEventListener('click',() => popupToggle(addPlacePopup));
@@ -140,4 +147,7 @@ fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
 
 formElement.addEventListener('submit', formSubmitHandler);
 formAddPlace.addEventListener('submit', addCardHandler);
+
+document.addEventListener('keydown', escKeyHandler);
+
 renderCards();
