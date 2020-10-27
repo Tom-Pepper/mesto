@@ -106,17 +106,24 @@ const addCardHandler = (evt) => {
   popupToggle(addPlacePopup);
 
   addPlaceForm.reset();
+
+  const placeButton = addPlaceForm.querySelector('.popup__button');
+  placeButton.disabled = true;
+  placeButton.classList.add('popup__button_disabled');
 }
 
 //Открытие поп-апа редактировния профиля
 const openProfilePopup = () =>  {
   nameInput.value = nameToEdit.textContent;
   jobInput.value = jobToEdit.textContent;
+  const profileButton = popup.querySelector('.popup__button');
+  profileButton.removeAttribute('disabled');
+  profileButton.classList.remove('popup__button_disabled');
   popupToggle(popup);
 }
 //Открытие и закрытие поп-апов
 const popupToggle = (popup) => {
-  popup.classList.toggle("popup_is-opened");
+    popup.classList.toggle("popup_is-opened");
 }
 
 //Закрытие поп-апов при клике по области вне модального окна
@@ -128,9 +135,11 @@ const closePopupLayerClick = (event) => {
 }
 
 function escKeyHandler(evt) {
-  if (evt.key === 'Escape') {
-    popupToggle(evt);
+  if (evt.currentTarget.querySelector('.popup_is-opened') && evt.key === 'Escape') {
+    popupToggle(evt.currentTarget.querySelector('.popup_is-opened'));
+    document.removeEventListener('keydown', escKeyHandler);
   }
+  document.addEventListener('keydown', escKeyHandler);
 }
 
 buttonEditProfile.addEventListener('click', openProfilePopup);

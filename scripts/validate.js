@@ -36,12 +36,12 @@ function checkInputValidity(form, input, errorClass, inputErrorClass) {
 
 // Функция активации/ деактивации кнопки сабмита в зависимости от валидности полей формы
 function toggleButton(form, submitButton, inactiveButtonClass) {
-  if(form.checkValidity()) {
-    submitButton.classList.remove(inactiveButtonClass);
-    submitButton.disabled = 'false';
-  } else {
+  if(!form.checkValidity()) {
     submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = 'true';
+    submitButton.setAttribute('disabled', true)
+  } else {
+    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.removeAttribute('disabled');
   }
 }
 
