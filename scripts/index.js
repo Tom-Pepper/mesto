@@ -92,7 +92,7 @@ const popupToggle = (popup) => {
   if (currentForm) {
     const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
     inputs.forEach(input => {
-      hideError(currentForm, input);
+      hideError(currentForm, input, validationObj);
     })
 
     const submitButton = currentForm.querySelector('.popup__button');

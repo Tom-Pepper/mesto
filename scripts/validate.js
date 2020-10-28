@@ -8,29 +8,29 @@ const validationObj = {
 }
 
 // Функция скрытия текста ошибки заполнения
-function hideError(form, input) {
+function hideError(form, input, {inputErrorClass, errorClass}) {
   const errorPlace = form.querySelector(`#${input.name}-error`);
-  errorPlace.classList.remove(validationObj.errorClass);
-  input.classList.remove(validationObj.inputErrorClass);
+  errorPlace.classList.remove(errorClass);
+  input.classList.remove(inputErrorClass);
 
   errorPlace.textContent = '';
 }
 
 // Функция показа текста ошибки заполнения
-function showError(form, input) {
+function showError(form, input, {inputErrorClass, errorClass}) {
   const errorPlace = form.querySelector(`#${input.name}-error`);
   errorPlace.textContent = input.validationMessage;
-  errorPlace.classList.add(validationObj.errorClass);
-  input.classList.add(validationObj.inputErrorClass);
+  errorPlace.classList.add(errorClass);
+  input.classList.add(inputErrorClass);
 
 }
 
 // Проверка полей на валидность
-function checkInputValidity(form, input) {
+function checkInputValidity(form, input, {inputErrorClass, errorClass}) {
   if (!input.checkValidity()) {
-    showError(form, input);
+    showError(form, input, {inputErrorClass, errorClass});
   } else {
-    hideError(form, input);
+    hideError(form, input, {inputErrorClass, errorClass});
   }
 }
 
@@ -46,14 +46,14 @@ function toggleButton(form, submitButton, {inactiveButtonClass}) {
 }
 
 // Функиця установки листнеров для всех инпутов
-function setEventListeners(form, { inputSelector, submitButtonSelector, inactiveButtonClass }) {
+function setEventListeners(form, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) {
 
   const inputs = Array.from(form.querySelectorAll(inputSelector));
   const submitButton = form.querySelector(submitButtonSelector);
 
   inputs.forEach(input => {
     input.addEventListener('input', evt => {
-      checkInputValidity(form, evt.target);
+      checkInputValidity(form, evt.target, rest);
       toggleButton(form, submitButton, {inactiveButtonClass});
     });
   });
