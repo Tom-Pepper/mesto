@@ -58,6 +58,12 @@ const createCard = (data) => {
   return card;
 }
 
+// Функция очистки полей инпутов
+ function clearInputs() {
+  profileEditForm.reset();
+  addPlaceForm.reset();
+ }
+
 //Изменение имени и "о себе" профиля
 const submitProfileEditForm = (evt) => {
   evt.preventDefault();
@@ -65,7 +71,7 @@ const submitProfileEditForm = (evt) => {
   jobToEdit.textContent = jobInput.value;
   popupToggle(popupEditProfile);
 
-  profileEditForm.reset();
+  clearInputs();
 }
 
 //Функция добавления новой карточки
@@ -82,7 +88,14 @@ const addCardHandler = (evt) => {
 
 // Функция открытия поп-апов
 const popupToggle = (popup) => {
-  // popup.classList.toggle("popup_is-opened");
+  const currentForm = popup.querySelector('.popup__form');
+  if (currentForm) {
+    const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
+    inputs.forEach(input => {
+      hideError(currentForm, input);
+    })
+  }
+
   if (!popup.classList.contains('popup_is-opened')) {
     popup.classList.add('popup_is-opened');
     document.addEventListener('keydown', escKeyHandler);
@@ -115,7 +128,6 @@ buttonEditProfile.addEventListener('click', () => {
   const profileButton = popupEditProfile.querySelector('.popup__button');
   profileButton.removeAttribute('disabled');
   profileButton.classList.remove('popup__button_disabled');
-
   popupToggle(popupEditProfile);
 });
 

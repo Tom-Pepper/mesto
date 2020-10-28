@@ -8,39 +8,39 @@ const validationObj = {
 }
 
 // Функция скрытия текста ошибки заполнения
-function hideError(form, input, errorClass, inputErrorClass) {
+function hideError(form, input) {
   const errorPlace = form.querySelector(`#${input.name}-error`);
-  errorPlace.classList.remove(errorClass);
-  input.classList.remove(inputErrorClass);
+  errorPlace.classList.remove(validationObj.errorClass);
+  input.classList.remove(validationObj.inputErrorClass);
 
   errorPlace.textContent = '';
 }
 
 // Функция показа текста ошибки заполнения
-function showError(form, input, errorClass, inputErrorClass) {
+function showError(form, input) {
   const errorPlace = form.querySelector(`#${input.name}-error`);
   errorPlace.textContent = input.validationMessage;
-  errorPlace.classList.add(errorClass);
-  input.classList.add(inputErrorClass);
+  errorPlace.classList.add(validationObj.errorClass);
+  input.classList.add(validationObj.inputErrorClass);
 
 }
 
 // Проверка полей на валидность
-function checkInputValidity(form, input, errorClass, inputErrorClass) {
+function checkInputValidity(form, input) {
   if (!input.checkValidity()) {
-    showError(form, input, errorClass, inputErrorClass);
+    showError(form, input);
   } else {
-    hideError(form, input, errorClass, inputErrorClass);
+    hideError(form, input);
   }
 }
 
 // Функция активации/ деактивации кнопки сабмита в зависимости от валидности полей формы
-function toggleButton(form, submitButton, inactiveButtonClass) {
+function toggleButton(form, submitButton) {
   if(!form.checkValidity()) {
-    submitButton.classList.add(inactiveButtonClass);
+    submitButton.classList.add(validationObj.inactiveButtonClass);
     submitButton.setAttribute('disabled', true)
   } else {
-    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.classList.remove(validationObj.inactiveButtonClass);
     submitButton.removeAttribute('disabled');
   }
 }
@@ -54,12 +54,12 @@ function setEventListeners(form, { inputSelector, submitButtonSelector, inactive
 
   inputs.forEach(input => {
     input.addEventListener('input', evt => {
-      checkInputValidity(form, evt.target, errorClass, inputErrorClass);
-      toggleButton(form, submitButton, inactiveButtonClass, inputErrorClass);
+      checkInputValidity(form, evt.target);
+      toggleButton(form, submitButton);
     });
   });
 
-  toggleButton(form, submitButton, inactiveButtonClass, inputErrorClass);
+  toggleButton(form, submitButton);
 }
 
 // Функция добавления листнера на все формы
@@ -73,7 +73,6 @@ function enableValidation({ formSelector, ...rest }) {
 
     setEventListeners(form, {...rest});
   });
-
 }
 
 enableValidation(validationObj);
