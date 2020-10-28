@@ -94,6 +94,9 @@ const popupToggle = (popup) => {
     inputs.forEach(input => {
       hideError(currentForm, input);
     })
+
+    const submitButton = currentForm.querySelector('.popup__button');
+    toggleButton(currentForm, submitButton);
   }
 
   if (!popup.classList.contains('popup_is-opened')) {
@@ -144,11 +147,6 @@ fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
 // Слушатель открытия окна добавления новой карточки
 buttonAddPlace.addEventListener('click', () => {
   addPlaceForm.reset();
-
-  const placeButton = addPlaceForm.querySelector('.popup__button');
-  placeButton.disabled = true;
-  placeButton.classList.add('popup__button_disabled');
-
   popupToggle(addPlacePopup)
 });
 
