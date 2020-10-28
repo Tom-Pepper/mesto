@@ -46,8 +46,7 @@ function toggleButton(form, submitButton) {
 }
 
 // Функиця установки листнеров для всех инпутов
-function setEventListeners(form, { inputSelector, submitButtonSelector, inactiveButtonClass,
-  errorClass, inputErrorClass }) {
+function setEventListeners(form, { inputSelector, submitButtonSelector }) {
 
   const inputs = Array.from(form.querySelectorAll(inputSelector));
   const submitButton = form.querySelector(submitButtonSelector);
