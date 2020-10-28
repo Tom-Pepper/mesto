@@ -96,7 +96,7 @@ const popupToggle = (popup) => {
     })
 
     const submitButton = currentForm.querySelector('.popup__button');
-    toggleButton(currentForm, submitButton);
+    toggleButton(currentForm, submitButton, validationObj);
   }
 
   if (!popup.classList.contains('popup_is-opened')) {

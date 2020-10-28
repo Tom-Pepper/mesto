@@ -35,18 +35,18 @@ function checkInputValidity(form, input) {
 }
 
 // Функция активации/ деактивации кнопки сабмита в зависимости от валидности полей формы
-function toggleButton(form, submitButton) {
+function toggleButton(form, submitButton, {inactiveButtonClass}) {
   if(!form.checkValidity()) {
-    submitButton.classList.add(validationObj.inactiveButtonClass);
+    submitButton.classList.add(inactiveButtonClass);
     submitButton.setAttribute('disabled', true)
   } else {
-    submitButton.classList.remove(validationObj.inactiveButtonClass);
+    submitButton.classList.remove(inactiveButtonClass);
     submitButton.removeAttribute('disabled');
   }
 }
 
 // Функиця установки листнеров для всех инпутов
-function setEventListeners(form, { inputSelector, submitButtonSelector }) {
+function setEventListeners(form, { inputSelector, submitButtonSelector, inactiveButtonClass }) {
 
   const inputs = Array.from(form.querySelectorAll(inputSelector));
   const submitButton = form.querySelector(submitButtonSelector);
@@ -54,11 +54,11 @@ function setEventListeners(form, { inputSelector, submitButtonSelector }) {
   inputs.forEach(input => {
     input.addEventListener('input', evt => {
       checkInputValidity(form, evt.target);
-      toggleButton(form, submitButton);
+      toggleButton(form, submitButton, {inactiveButtonClass});
     });
   });
 
-  toggleButton(form, submitButton);
+  toggleButton(form, submitButton, {inactiveButtonClass});
 }
 
 // Функция добавления листнера на все формы
