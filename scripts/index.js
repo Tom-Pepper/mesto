@@ -1,44 +1,17 @@
-//Массив для вставки карточек при загрузке сайта
-const initialCards = [
-  {
-    name: 'Остров Ольхон',
-    link: './images/olkhon-island.jpg'
-  },
-  {
-    name: 'Гора Эльбрус',
-    link: './images/elbrus-mtn.jpg'
-  },
-  {
-    name: 'Магадан',
-    link: './images/magadan.jpg'
-  },
-  {
-    name: 'Карачаево- Черкессия',
-    link: './images/karachaevo-cherkessia.jpg'
-  },
-  {
-    name: 'Алтай',
-    link: './images/altay.jpg'
-  },
-  {
-    name: 'Онежское озеро',
-    link: './images/onezhskoe-ozero.jpg'
-  }
-];
 //Переменные
 const profileEditForm = document.forms['profile-edit'];
 const addPlaceForm = document.forms['profile-add-place'];
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const buttonAddPlace = document.querySelector(".profile__add-button");
-const popup = document.querySelector(".popup");
+const popupEditProfile = document.querySelector(".popup__edit-profile");
 const addPlacePopup = document.querySelector(".popup-new-place");
-const buttonClosePopup = popup.querySelector(".popup__close");
+const buttonClosePopup = popupEditProfile.querySelector(".popup__close");
 const buttonCloseAddPlacePopup = document.querySelector(".popup-new-place__close");
 
-const formElement = popup.querySelector(".popup__form");
-const nameInput = popup.querySelector(".popup__name");
-const jobInput = popup.querySelector(".popup__job");
+const formElement = popupEditProfile.querySelector(".popup__form");
+const nameInput = popupEditProfile.querySelector(".popup__name");
+const jobInput = popupEditProfile.querySelector(".popup__job");
 const nameToEdit = document.querySelector(".profile__info-name");
 const jobToEdit = document.querySelector(".profile__info-job");
 
@@ -59,6 +32,7 @@ const renderCards = () => {
   const cards = initialCards.map(initialCard => createCard(initialCard));
   cardPosition.append(...cards);
 }
+
 // Функция добавления карточки, включая работоспособность кнопки лайка и удаления конкретной карточки, открытия
 // изображения при клике по фото
 const createCard = (data) => {
@@ -84,12 +58,12 @@ const createCard = (data) => {
   return card;
 }
 
-//Изменение имени и профессии профиля
-const formSubmitHandler = (evt) => {
+//Изменение имени и "о себе" профиля
+const submitProfileEditForm = (evt) => {
   evt.preventDefault();
   nameToEdit.textContent = nameInput.value;
   jobToEdit.textContent = jobInput.value;
-  popupToggle(popup);
+  popupToggle(popupEditProfile);
 
   profileEditForm.reset();
 }
@@ -104,29 +78,21 @@ const addCardHandler = (evt) => {
   cardPosition.prepend(newPlace);
 
   popupToggle(addPlacePopup);
-
-  addPlaceForm.reset();
-
-  const placeButton = addPlaceForm.querySelector('.popup__button');
-  placeButton.disabled = true;
-  placeButton.classList.add('popup__button_disabled');
 }
 
-//Открытие поп-апа редактировния профиля
-const openProfilePopup = () =>  {
-  nameInput.value = nameToEdit.textContent;
-  jobInput.value = jobToEdit.textContent;
-  const profileButton = popup.querySelector('.popup__button');
-  profileButton.removeAttribute('disabled');
-  profileButton.classList.remove('popup__button_disabled');
-  popupToggle(popup);
-}
-//Открытие и закрытие поп-апов
+// Функция открытия поп-апов
 const popupToggle = (popup) => {
-    popup.classList.toggle("popup_is-opened");
+  // popup.classList.toggle("popup_is-opened");
+  if (!popup.classList.contains('popup_is-opened')) {
+    popup.classList.add('popup_is-opened');
+    document.addEventListener('keydown', escKeyHandler);
+  } else {
+    document.removeEventListener('keydown', escKeyHandler);
+    popup.classList.remove('popup_is-opened');
+  }
 }
 
-//Закрытие поп-апов при клике по области вне модального окна
+// Закрытие поп-апов при клике по области вне модального окна
 const closePopupLayerClick = (event) => {
   const currentModalWindow = event.currentTarget;
   if (event.target === currentModalWindow) {
@@ -134,29 +100,48 @@ const closePopupLayerClick = (event) => {
   }
 }
 
+// Закрытие поп-апов по кнопке Escape
 function escKeyHandler(evt) {
-  if (evt.currentTarget.querySelector('.popup_is-opened') && evt.key === 'Escape') {
+  if (evt.key === 'Escape') {
     popupToggle(evt.currentTarget.querySelector('.popup_is-opened'));
-    document.removeEventListener('keydown', escKeyHandler);
   }
-  document.addEventListener('keydown', escKeyHandler);
 }
 
-buttonEditProfile.addEventListener('click', openProfilePopup);
-buttonClosePopup.addEventListener('click', () => popupToggle(popup) );
-popup.addEventListener('click', closePopupLayerClick);
+// Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
+buttonEditProfile.addEventListener('click', () => {
+  nameInput.value = nameToEdit.textContent;
+  jobInput.value = jobToEdit.textContent;
 
+  const profileButton = popupEditProfile.querySelector('.popup__button');
+  profileButton.removeAttribute('disabled');
+  profileButton.classList.remove('popup__button_disabled');
 
-buttonAddPlace.addEventListener('click', () => popupToggle(addPlacePopup));
-buttonCloseAddPlacePopup.addEventListener('click',() => popupToggle(addPlacePopup));
+  popupToggle(popupEditProfile);
+});
+
+//Слушатели закрытия модалок при клике по оверлею
 addPlacePopup.addEventListener('click', closePopupLayerClick);
 imageFullSize.addEventListener('click', closePopupLayerClick);
+popupEditProfile.addEventListener('click', closePopupLayerClick);
 
+// Слушатели закрытия модалок по клику на кнопку- крест
+buttonCloseAddPlacePopup.addEventListener('click',() => popupToggle(addPlacePopup));
+buttonClosePopup.addEventListener('click', () => popupToggle(popupEditProfile) );
 fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
 
-formElement.addEventListener('submit', formSubmitHandler);
-formAddPlace.addEventListener('submit', addCardHandler);
+// Слушатель открытия окна добавления новой карточки
+buttonAddPlace.addEventListener('click', () => {
+  addPlaceForm.reset();
 
-document.addEventListener('keydown', escKeyHandler);
+  const placeButton = addPlaceForm.querySelector('.popup__button');
+  placeButton.disabled = true;
+  placeButton.classList.add('popup__button_disabled');
+
+  popupToggle(addPlacePopup)
+});
+
+// Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
+formElement.addEventListener('submit', submitProfileEditForm);
+formAddPlace.addEventListener('submit', addCardHandler);
 
 renderCards();

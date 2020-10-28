@@ -20,10 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/vendor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/content/content.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/content/content.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/element/__caption/element__caption.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/__caption/element__caption.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/element/__image/element__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/element/__image/element__image.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/validate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +80,9 @@
       <workItem from="1602579735330" duration="4828000" />
       <workItem from="1602686096868" duration="7150000" />
       <workItem from="1603382738032" duration="17000" />
-      <workItem from="1603382798049" duration="35930000" />
+      <workItem from="1603382798049" duration="36287000" />
+      <workItem from="1603799829741" duration="400000" />
+      <workItem from="1603805366383" duration="5040000" />
     </task>
     <servers />
   </component>
@@ -97,6 +102,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603807322863">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800@0.0.1280.800" timestamp="1603807322863" />
     <state x="450" y="109" key="RollbackChangesDialog" timestamp="1603697774745">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
