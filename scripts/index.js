@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 //Переменные
 const profileEditForm = document.forms['profile-edit'];
 const addPlaceForm = document.forms['profile-add-place'];
@@ -27,35 +30,13 @@ const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
 const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
 const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
-//Первичная загрузка карточек из массива на главную страницу
+//Первичная загрузка карточек из массива на главную страницу cайта
 const renderCards = () => {
-  const cards = initialCards.map(initialCard => createCard(initialCard));
-  cardPosition.append(...cards);
-}
-
-// Функция добавления карточки, включая работоспособность кнопки лайка и удаления конкретной карточки, открытия
-// изображения при клике по фото
-const createCard = (data) => {
-  const card = cardTemplate.content.cloneNode(true);
-  const elementImage = card.querySelector('.element__image');
-  card.querySelector('.element__title').innerText = data.name;
-  elementImage.src = data.link;
-  elementImage.alt = data.name;
-  card.querySelector('.element__like-button').addEventListener('click', (evt) => {
-    const likeTarget = evt.target;
-    likeTarget.classList.toggle('element__like-button_active');
-  })
-  card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-    const deleteTarget = evt.target;
-    deleteTarget.closest('.element').remove();
-  })
-  elementImage.addEventListener('click', () => {
-    fullSizePhoto.src = data.link;
-    fullSizePhoto.alt = data.name;
-    imageFullSizeTitle.innerText = data.name;
-    popupToggle(imageFullSize);
-  })
-  return card;
+  initialCards.forEach(item => {
+    const card = new Card(item.name, item.link, '.elements__template');
+    cardPosition.append(card.create('.elements'));
+    card.image.addEventListener('click', () => {openImage(card)});
+  });
 }
 
 // Функция очистки полей инпутов
@@ -74,15 +55,21 @@ const submitProfileEditForm = (evt) => {
   clearInputs();
 }
 
+//Функция открытия картинки карточки в полном размере
+const openImage = (card) => {
+  fullSizePhoto.src = card._link;
+  fullSizePhoto.alt = card._name;
+  imageFullSizeTitle.innerText = card._name;
+  popupToggle(imageFullSize);
+}
+
 //Функция добавления новой карточки
 const addCardHandler = (evt) => {
   evt.preventDefault();
-  const newPlace = createCard({
-    name: placeDescInput.value,
-    link: placeImgInput.value
-  });
-  cardPosition.prepend(newPlace);
+  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template');
+  cardPosition.prepend(newPlace.create('.elements'));
 
+  newPlace.image.addEventListener('click', () => {openImage(newPlace)})
   popupToggle(addPlacePopup);
 }
 
