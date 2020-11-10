@@ -22,7 +22,6 @@ const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form');
 const placeDescInput = addPlacePopup.querySelector('.popup-new-place__description');
 const placeImgInput = addPlacePopup.querySelector('.popup-new-place__image-link');
 
-const cardTemplate = document.querySelector('.elements__template');
 const cardPosition = document.querySelector('.elements');
 
 const imageFullSize = document.querySelector('.popup-image');
@@ -57,9 +56,9 @@ const submitProfileEditForm = (evt) => {
 
 //Функция открытия картинки карточки в полном размере
 const openImage = (card) => {
-  fullSizePhoto.src = card._link;
-  fullSizePhoto.alt = card._name;
-  imageFullSizeTitle.innerText = card._name;
+  fullSizePhoto.src = card.link;
+  fullSizePhoto.alt = card.name;
+  imageFullSizeTitle.innerText = card.name;
   popupToggle(imageFullSize);
 }
 
@@ -75,15 +74,17 @@ const addCardHandler = (evt) => {
 
 // Функция открытия поп-апов
 const popupToggle = (popup) => {
+
   const currentForm = popup.querySelector('.popup__form');
   if (currentForm) {
     const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
     inputs.forEach(input => {
-      hideError(currentForm, input, validationObj);
+      editProfileForm.hideError(currentForm, input);
+      newPlaceForm.hideError(currentForm, input);
     })
 
-    const submitButton = currentForm.querySelector('.popup__button');
-    toggleButton(currentForm, submitButton, validationObj);
+    editProfileForm.toggleButton();
+    newPlaceForm.toggleButton();
   }
 
   if (!popup.classList.contains('popup_is-opened')) {
@@ -134,11 +135,16 @@ fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
 // Слушатель открытия окна добавления новой карточки
 buttonAddPlace.addEventListener('click', () => {
   addPlaceForm.reset();
-  popupToggle(addPlacePopup)
+  popupToggle(addPlacePopup);
 });
 
 // Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
 formElement.addEventListener('submit', submitProfileEditForm);
 formAddPlace.addEventListener('submit', addCardHandler);
+
+const editProfileForm = new FormValidator(validationObj, formElement);
+editProfileForm.enableValidation();
+const newPlaceForm = new FormValidator(validationObj, formAddPlace);
+newPlaceForm.enableValidation();
 
 renderCards();
