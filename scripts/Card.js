@@ -1,3 +1,4 @@
+// Класс добавления новой карточки, с функционалом лайка и удаления
 export class Card {
   constructor(name, link, templateSelector) {
     this.name = name;

@@ -1,3 +1,4 @@
+// Класс валидции полей поп-апов, очистки и добавления текста ошибки, переключение состояния кнопки сабмита формы
 export class FormValidator {
   constructor(validationObj, form) {
     this.validationObj = validationObj;
