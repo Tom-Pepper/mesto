@@ -12,7 +12,7 @@ export class FormValidator {
     errorPlace.textContent = '';
   }
 
-  showError(form, input) {
+  _showError(form, input) {
     const errorPlace = form.querySelector(`#${input.name}-error`);
     errorPlace.textContent = input.validationMessage;
     errorPlace.classList.add(this.validationObj.errorClass);
@@ -21,7 +21,7 @@ export class FormValidator {
 
   _checkInputValidity(form, input) {
     if (!input.checkValidity()) {
-      this.showError(form, input);
+      this._showError(form, input);
     } else {
       this.hideError(form, input);
     }
@@ -53,11 +53,10 @@ export class FormValidator {
   }
 
   enableValidation() {
-
     this.form.addEventListener('submit', evt => {
         evt.preventDefault();
       });
 
-      this._setEventListeners(this.form, this.validationObj);
+      this._setEventListeners();
   }
 }

@@ -32,17 +32,27 @@ const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 //Первичная загрузка карточек из массива на главную страницу cайта
 const renderCards = () => {
   initialCards.forEach(item => {
-    const card = new Card(item.name, item.link, '.elements__template');
+    const card = new Card(item.name, item.link, '.elements__template', openImage);
     cardPosition.append(card.create('.elements'));
-    card.image.addEventListener('click', () => {openImage(card)});
   });
 }
 
-// Функция очистки полей инпутов
- function clearInputs() {
-  profileEditForm.reset();
-  addPlaceForm.reset();
- }
+//Функция добавления новой карточки
+const addCardHandler = (evt) => {
+  evt.preventDefault();
+  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template', openImage);
+  cardPosition.prepend(newPlace.create());
+
+  popupToggle(addPlacePopup);
+}
+
+//Функция открытия картинки карточки в полном размере
+const openImage = (evt) => {
+  fullSizePhoto.src = evt.target.getAttribute('src');
+  fullSizePhoto.alt = evt.target.getAttribute('alt');
+  imageFullSizeTitle.innerText = fullSizePhoto.alt;
+  popupToggle(imageFullSize);
+}
 
 //Изменение имени и "о себе" профиля
 const submitProfileEditForm = (evt) => {
@@ -51,30 +61,11 @@ const submitProfileEditForm = (evt) => {
   jobToEdit.textContent = jobInput.value;
   popupToggle(popupEditProfile);
 
-  clearInputs();
+  profileEditForm.reset();
 }
 
-//Функция открытия картинки карточки в полном размере
-const openImage = (card) => {
-  fullSizePhoto.src = card.link;
-  fullSizePhoto.alt = card.name;
-  imageFullSizeTitle.innerText = card.name;
-  popupToggle(imageFullSize);
-}
-
-//Функция добавления новой карточки
-const addCardHandler = (evt) => {
-  evt.preventDefault();
-  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template');
-  cardPosition.prepend(newPlace.create('.elements'));
-
-  newPlace.image.addEventListener('click', () => {openImage(newPlace)})
-  popupToggle(addPlacePopup);
-}
-
-// Функция открытия поп-апов
-const popupToggle = (popup) => {
-
+// Функция очистки текста ошибок и проверка состояния кнопки сабмита (исп. перед открытием поп-апов)
+const clearErrors = (popup) => {
   const currentForm = popup.querySelector('.popup__form');
   if (currentForm) {
     const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
@@ -82,11 +73,13 @@ const popupToggle = (popup) => {
       editProfileForm.hideError(currentForm, input);
       newPlaceForm.hideError(currentForm, input);
     })
-
     editProfileForm.toggleButton();
     newPlaceForm.toggleButton();
   }
+}
 
+// Функция открытия поп-апов
+const popupToggle = (popup) => {
   if (!popup.classList.contains('popup_is-opened')) {
     popup.classList.add('popup_is-opened');
     document.addEventListener('keydown', escKeyHandler);
@@ -115,11 +108,15 @@ function escKeyHandler(evt) {
 buttonEditProfile.addEventListener('click', () => {
   nameInput.value = nameToEdit.textContent;
   jobInput.value = jobToEdit.textContent;
-
-  const profileButton = popupEditProfile.querySelector('.popup__button');
-  profileButton.removeAttribute('disabled');
-  profileButton.classList.remove('popup__button_disabled');
+  clearErrors(popupEditProfile);
   popupToggle(popupEditProfile);
+});
+
+// Слушатель открытия окна добавления новой карточки
+buttonAddPlace.addEventListener('click', () => {
+  addPlaceForm.reset();
+  clearErrors(addPlacePopup);
+  popupToggle(addPlacePopup);
 });
 
 //Слушатели закрытия модалок при клике по оверлею
@@ -131,12 +128,6 @@ popupEditProfile.addEventListener('click', closePopupLayerClick);
 buttonCloseAddPlacePopup.addEventListener('click',() => popupToggle(addPlacePopup));
 buttonClosePopup.addEventListener('click', () => popupToggle(popupEditProfile) );
 fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
-
-// Слушатель открытия окна добавления новой карточки
-buttonAddPlace.addEventListener('click', () => {
-  addPlaceForm.reset();
-  popupToggle(addPlacePopup);
-});
 
 // Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
 formElement.addEventListener('submit', submitProfileEditForm);

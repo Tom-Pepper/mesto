@@ -1,9 +1,10 @@
 // Класс добавления новой карточки, с функционалом лайка и удаления
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, openImage) {
     this.name = name;
     this.link = link;
     this._templateSelector = document.querySelector(templateSelector).content;
+    this.openImage = openImage;
   }
 
   _like(evt) {
@@ -25,6 +26,7 @@ export class Card {
 
     this._content.querySelector('.element__like-button').addEventListener('click', this._like);
     this._content.querySelector('.element__delete-button').addEventListener('click', this._delete);
+    this.image.addEventListener('click', this.openImage);
 
     return this._content;
   }
