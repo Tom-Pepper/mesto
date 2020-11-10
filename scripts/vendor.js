@@ -1,4 +1,4 @@
-//Массив для вставки карточек при загрузке сайта
+// Массив для вставки карточек при загрузке сайта
 const initialCards = [
   {
     name: 'Остров Ольхон',
@@ -26,7 +26,7 @@ const initialCards = [
   }
 ];
 
-//Объект для валидации полей
+// Объект для валидации полей
 const validationObj = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

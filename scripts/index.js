@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
-//Переменные
+// Переменные
 const profileEditForm = document.forms['profile-edit'];
 const addPlaceForm = document.forms['profile-add-place'];
 
@@ -29,7 +29,7 @@ const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
 const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
 const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
-//Первичная загрузка карточек из массива на главную страницу cайта
+// Первичная загрузка карточек из массива на главную страницу cайта
 const renderCards = () => {
   initialCards.forEach(item => {
     const card = new Card(item.name, item.link, '.elements__template', openImage);
@@ -46,7 +46,7 @@ const addCardHandler = (evt) => {
   popupToggle(addPlacePopup);
 }
 
-//Функция открытия картинки карточки в полном размере
+// Функция открытия картинки карточки в полном размере
 const openImage = (evt) => {
   fullSizePhoto.src = evt.target.getAttribute('src');
   fullSizePhoto.alt = evt.target.getAttribute('alt');
@@ -119,7 +119,7 @@ buttonAddPlace.addEventListener('click', () => {
   popupToggle(addPlacePopup);
 });
 
-//Слушатели закрытия модалок при клике по оверлею
+// Слушатели закрытия модалок при клике по оверлею
 addPlacePopup.addEventListener('click', closePopupLayerClick);
 imageFullSize.addEventListener('click', closePopupLayerClick);
 popupEditProfile.addEventListener('click', closePopupLayerClick);
