@@ -19,6 +19,19 @@ export class FormValidator {
     input.classList.add(this.validationObj.inputErrorClass);
   }
 
+  // Функция очистки текста ошибок и проверка состояния кнопки сабмита (вызывать у нужного объекта
+  // перед открытием поп-апов в index.js)
+  clearErrors = (popup) => {
+    const currentForm = popup.querySelector('.popup__form');
+    if (currentForm) {
+      const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
+      inputs.forEach(input => {
+        this.hideError(currentForm, input);
+      })
+      this.toggleButton();
+    }
+  }
+
   _checkInputValidity(form, input) {
     if (!input.checkValidity()) {
       this._showError(form, input);
@@ -48,7 +61,6 @@ export class FormValidator {
         this.toggleButton(this.form, this.submitButton);
       });
     });
-
     this.toggleButton(this.form, this.submitButton, this.validationObj);
   }
 
@@ -56,7 +68,6 @@ export class FormValidator {
     this.form.addEventListener('submit', evt => {
         evt.preventDefault();
       });
-
       this._setEventListeners();
   }
 }

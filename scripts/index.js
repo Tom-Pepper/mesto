@@ -32,7 +32,7 @@ const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 // Первичная загрузка карточек из массива на главную страницу cайта
 const renderCards = () => {
   initialCards.forEach(item => {
-    const card = new Card(item.name, item.link, '.elements__template', openImage);
+    const card = new Card(item.name, item.link, '.elements__template', () => openImage(card));
     cardPosition.append(card.create('.elements'));
   });
 }
@@ -40,18 +40,11 @@ const renderCards = () => {
 //Функция добавления новой карточки
 const addCardHandler = (evt) => {
   evt.preventDefault();
-  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template', openImage);
+  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template',
+    () => openImage(newPlace));
   cardPosition.prepend(newPlace.create());
 
   popupToggle(addPlacePopup);
-}
-
-// Функция открытия картинки карточки в полном размере
-const openImage = (evt) => {
-  fullSizePhoto.src = evt.target.getAttribute('src');
-  fullSizePhoto.alt = evt.target.getAttribute('alt');
-  imageFullSizeTitle.innerText = fullSizePhoto.alt;
-  popupToggle(imageFullSize);
 }
 
 //Изменение имени и "о себе" профиля
@@ -64,20 +57,6 @@ const submitProfileEditForm = (evt) => {
   profileEditForm.reset();
 }
 
-// Функция очистки текста ошибок и проверка состояния кнопки сабмита (исп. перед открытием поп-апов)
-const clearErrors = (popup) => {
-  const currentForm = popup.querySelector('.popup__form');
-  if (currentForm) {
-    const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
-    inputs.forEach(input => {
-      editProfileForm.hideError(currentForm, input);
-      newPlaceForm.hideError(currentForm, input);
-    })
-    editProfileForm.toggleButton();
-    newPlaceForm.toggleButton();
-  }
-}
-
 // Функция открытия поп-апов
 const popupToggle = (popup) => {
   if (!popup.classList.contains('popup_is-opened')) {
@@ -87,6 +66,14 @@ const popupToggle = (popup) => {
     document.removeEventListener('keydown', escKeyHandler);
     popup.classList.remove('popup_is-opened');
   }
+}
+
+// Функция открытия картинки карточки в полном размере
+const openImage = (data) => {
+  fullSizePhoto.src = data.link;
+  fullSizePhoto.alt = data.name;
+  imageFullSizeTitle.innerText = data.name;
+  popupToggle(imageFullSize);
 }
 
 // Закрытие поп-апов при клике по области вне модального окна
@@ -108,14 +95,14 @@ function escKeyHandler(evt) {
 buttonEditProfile.addEventListener('click', () => {
   nameInput.value = nameToEdit.textContent;
   jobInput.value = jobToEdit.textContent;
-  clearErrors(popupEditProfile);
+  editProfileForm.clearErrors(popupEditProfile);
   popupToggle(popupEditProfile);
 });
 
 // Слушатель открытия окна добавления новой карточки
 buttonAddPlace.addEventListener('click', () => {
   addPlaceForm.reset();
-  clearErrors(addPlacePopup);
+  newPlaceForm.clearErrors(addPlacePopup);
   popupToggle(addPlacePopup);
 });
 
@@ -133,6 +120,7 @@ fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
 formElement.addEventListener('submit', submitProfileEditForm);
 formAddPlace.addEventListener('submit', addCardHandler);
 
+// Создание объектов форм в каждом поп-апе для валидации
 const editProfileForm = new FormValidator(validationObj, formElement);
 editProfileForm.enableValidation();
 const newPlaceForm = new FormValidator(validationObj, formAddPlace);
