@@ -25,21 +25,3 @@ export class Popup {
       .addEventListener('click', () => this.close(this._popupSelector));
   }
 }
-
-
-// //
-// const popupToggle = (popup) => {
-//   if (!popup.classList.contains('popup_is-opened')) {
-//     popup.classList.add('popup_is-opened');
-//     document.addEventListener('keydown', escKeyHandler);
-//   } else {
-//     document.removeEventListener('keydown', escKeyHandler);
-//     popup.classList.remove('popup_is-opened');
-//   }
-// }
-//
-// function escKeyHandler(evt) {
-//   if (evt.key === 'Escape') {
-//     popupToggle(evt.currentTarget.querySelector('.popup_is-opened'));
-//   }
-// }

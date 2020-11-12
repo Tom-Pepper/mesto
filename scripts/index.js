@@ -61,12 +61,12 @@ const submitProfileEditForm = (evt) => {
 }
 
 // Функция открытия картинки карточки в полном размере
-const openImage = (data) => {
-  fullSizePhoto.src = data.link;
-  fullSizePhoto.alt = data.name;
-  imageFullSizeTitle.innerText = data.name;
-  // popupToggle(imageFullSize);
-}
+// const openImage = (data) => {
+//   fullSizePhoto.src = data.link;
+//   fullSizePhoto.alt = data.name;
+//   imageFullSizeTitle.innerText = data.name;
+//   // popupToggle(imageFullSize);
+// }
 
 // Закрытие поп-апов при клике по области вне модального окна
 const closePopupLayerClick = (event) => {
