@@ -47,7 +47,7 @@ const addCardHandler = (evt) => {
     () => openImage(newPlace));
   cardPosition.prepend(newPlace.create());
 
-  // popupToggle(addPlacePopup);
+  placePopup.close(addPlacePopup);
 }
 
 //Изменение имени и "о себе" профиля
@@ -55,22 +55,10 @@ const submitProfileEditForm = (evt) => {
   evt.preventDefault();
   nameToEdit.textContent = nameInput.value;
   jobToEdit.textContent = jobInput.value;
-  // popupToggle(popupEditProfile);
   profilePopup.close(popupEditProfile);
 
   profileEditForm.reset();
 }
-
-// Функция открытия и закрытия поп-апов
-// const popupToggle = (popup) => {
-//   if (!popup.classList.contains('popup_is-opened')) {
-//     popup.classList.add('popup_is-opened');
-//     document.addEventListener('keydown', escKeyHandler);
-//   } else {
-//     document.removeEventListener('keydown', escKeyHandler);
-//     popup.classList.remove('popup_is-opened');
-//   }
-// }
 
 // Функция открытия картинки карточки в полном размере
 const openImage = (data) => {
@@ -89,19 +77,11 @@ const closePopupLayerClick = (event) => {
   }
 }
 
-// Закрытие поп-апов по кнопке Escape
-// function escKeyHandler(evt) {
-//   if (evt.key === 'Escape') {
-//     popupToggle(evt.currentTarget.querySelector('.popup_is-opened'));
-//   }
-// }
-
 // Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
   nameInput.value = nameToEdit.textContent;
   jobInput.value = jobToEdit.textContent;
   editProfileForm.clearErrors(popupEditProfile);
-  // popupToggle(popupEditProfile);
   profilePopup.open();
 });
 
@@ -109,7 +89,7 @@ buttonEditProfile.addEventListener('click', () => {
 buttonAddPlace.addEventListener('click', () => {
   addPlaceForm.reset();
   newPlaceForm.clearErrors(addPlacePopup);
-  // popupToggle(addPlacePopup);
+  placePopup.open();
 });
 
 // Слушатели закрытия модалок при клике по оверлею
@@ -117,17 +97,15 @@ addPlacePopup.addEventListener('click', closePopupLayerClick);
 imageFullSize.addEventListener('click', closePopupLayerClick);
 popupEditProfile.addEventListener('click', closePopupLayerClick);
 
-// Слушатели закрытия модалок по клику на кнопку- крест
-// buttonCloseAddPlacePopup.addEventListener('click',() => popupToggle(addPlacePopup));
-// buttonClosePopup.addEventListener('click', () => popupToggle(popupEditProfile) );
-// fullSizeCloseButton.addEventListener('click', () => popupToggle(imageFullSize));
-
 // Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
 formElement.addEventListener('submit', submitProfileEditForm);
 formAddPlace.addEventListener('submit', addCardHandler);
 
+// Создание объектов поп-апов сайта
 const profilePopup = new Popup(popupEditProfile);
 profilePopup.setEventListeners();
+const placePopup = new Popup(addPlacePopup);
+placePopup.setEventListeners();
 
 // Создание объектов форм в каждом поп-апе для валидации
 const editProfileForm = new FormValidator(validationObj, formElement);
