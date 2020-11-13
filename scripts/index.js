@@ -47,7 +47,7 @@ const addCardHandler = (evt) => {
     () => openImage(newPlace));
   cardPosition.prepend(newPlace.create());
 
-  placePopup.close(addPlacePopup);
+  placePopup.close();
 }
 
 //Изменение имени и "о себе" профиля
@@ -55,7 +55,7 @@ const submitProfileEditForm = (evt) => {
   evt.preventDefault();
   nameToEdit.textContent = nameInput.value;
   jobToEdit.textContent = jobInput.value;
-  profilePopup.close(popupEditProfile);
+  profilePopup.close();
 
   profileEditForm.reset();
 }
@@ -72,8 +72,8 @@ const submitProfileEditForm = (evt) => {
 const closePopupLayerClick = (event) => {
   const currentModalWindow = event.currentTarget;
   if (event.target === currentModalWindow) {
-    // popupToggle(currentModalWindow);
-    profilePopup.close(currentModalWindow);
+    profilePopup.close();
+    placePopup.close();
   }
 }
 
