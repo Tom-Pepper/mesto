@@ -37,7 +37,8 @@ const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 //Функция добавления новой карточки
 const addCardHandler = (evt) => {
   evt.preventDefault();
-  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template', () => {
+  const newPlace = new Card(placeDescInput.value, placeImgInput.value,
+    '.elements__template', () => {
     const image = new PopupWithImage(newPlace, imageFullSize);
     image.setEventListeners();
     image.open();
@@ -61,8 +62,7 @@ const submitProfileEditForm = (evt) => {
 const closePopupLayerClick = (event) => {
   const currentModalWindow = event.currentTarget;
   if (event.target === currentModalWindow) {
-    profilePopup.close();
-    placePopup.close();
+    currentModalWindow.classList.remove('popup_is-opened');
   }
 }
 

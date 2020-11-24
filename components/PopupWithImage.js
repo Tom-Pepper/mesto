@@ -12,11 +12,10 @@ export class PopupWithImage extends Popup {
   }
 
   open() {
-    this._popup
-      .querySelector('.popup-image__preview')
+    const _preview = this._popup.querySelector('.popup-image__preview');
+    _preview
       .src = this._link;
-    this._popup
-      .querySelector('.popup-image__preview')
+    _preview
       .alt = this._name;
     this._popup
       .querySelector('.popup-image__title')
