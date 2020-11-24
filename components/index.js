@@ -58,14 +58,6 @@ const submitProfileEditForm = (evt) => {
   profileEditForm.reset();
 }
 
-// Закрытие поп-апов при клике по области вне модального окна
-const closePopupLayerClick = (event) => {
-  const currentModalWindow = event.currentTarget;
-  if (event.target === currentModalWindow) {
-    currentModalWindow.classList.remove('popup_is-opened');
-  }
-}
-
 // Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
   nameInput.value = nameToEdit.textContent;
@@ -80,11 +72,6 @@ buttonAddPlace.addEventListener('click', () => {
   newPlaceForm.clearErrors(addPlacePopup);
   placePopup.open();
 });
-
-// Слушатели закрытия модалок при клике по оверлею
-addPlacePopup.addEventListener('click', closePopupLayerClick);
-imageFullSize.addEventListener('click', closePopupLayerClick);
-popupEditProfile.addEventListener('click', closePopupLayerClick);
 
 // Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
 formElement.addEventListener('submit', submitProfileEditForm);
