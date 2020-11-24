@@ -7,7 +7,7 @@ export class PopupWithImage extends Popup {
 
   open() {
     super.open();
-
+    // Вставлять в попап картинку
   }
 }
 

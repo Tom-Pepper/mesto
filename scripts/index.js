@@ -3,6 +3,8 @@ import { FormValidator } from "./FormValidator.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
 
 // Переменные
 const profileEditForm = document.forms['profile-edit'];
@@ -32,14 +34,6 @@ const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
 const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
 const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
-// Первичная загрузка карточек из массива на главную страницу cайта
-const renderCards = () => {
-  initialCards.forEach(item => {
-    const card = new Card(item.name, item.link, '.elements__template', () => openImage(card));
-    cardPosition.append(card.create('.elements'));
-  });
-}
-
 //Функция добавления новой карточки
 const addCardHandler = (evt) => {
   evt.preventDefault();
@@ -61,12 +55,12 @@ const submitProfileEditForm = (evt) => {
 }
 
 // Функция открытия картинки карточки в полном размере
-// const openImage = (data) => {
-//   fullSizePhoto.src = data.link;
-//   fullSizePhoto.alt = data.name;
-//   imageFullSizeTitle.innerText = data.name;
-//   // popupToggle(imageFullSize);
-// }
+const openImage = (data) => {
+  fullSizePhoto.src = data.link;
+  fullSizePhoto.alt = data.name;
+  imageFullSizeTitle.innerText = data.name;
+  // popupToggle(imageFullSize);
+}
 
 // Закрытие поп-апов при клике по области вне модального окна
 const closePopupLayerClick = (event) => {
@@ -113,4 +107,13 @@ editProfileForm.enableValidation();
 const newPlaceForm = new FormValidator(validationObj, formAddPlace);
 newPlaceForm.enableValidation();
 
-renderCards();
+// Создание объекта для отрисовки изначального массива картинок
+const initial = new Section({
+  items: initialCards,
+  renderer: (data) => {
+    const card = new Card(data.name, data.link, '.elements__template', () => openImage(card));
+    initial.addItem(card.create());
+  }
+}, cardPosition);
+
+initial.renderItems();

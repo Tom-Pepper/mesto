@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Адаптивный веб- сайт с местами в России, которые стоит посетить. Тут можно добавлять места, удалять, лайкать фото и менять имя профиля.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom-Pepper/mesto.git"
+  },
+  "author": "Artem Kondratev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tom-Pepper/mesto/issues"
+  },
+  "homepage": "https://github.com/Tom-Pepper/mesto#readme"
+}
