@@ -37,8 +37,11 @@ const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 //Функция добавления новой карточки
 const addCardHandler = (evt) => {
   evt.preventDefault();
-  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template',
-    () => openImage(newPlace));
+  const newPlace = new Card(placeDescInput.value, placeImgInput.value,'.elements__template', () => {
+    const image = new PopupWithImage(newPlace, imageFullSize);
+    image.setEventListeners();
+    image.open();
+  });
   cardPosition.prepend(newPlace.create());
 
   placePopup.close();
@@ -52,14 +55,6 @@ const submitProfileEditForm = (evt) => {
   profilePopup.close();
 
   profileEditForm.reset();
-}
-
-// Функция открытия картинки карточки в полном размере
-const openImage = (data) => {
-  fullSizePhoto.src = data.link;
-  fullSizePhoto.alt = data.name;
-  imageFullSizeTitle.innerText = data.name;
-  // popupToggle(imageFullSize);
 }
 
 // Закрытие поп-апов при клике по области вне модального окна
@@ -111,7 +106,11 @@ newPlaceForm.enableValidation();
 const initial = new Section({
   items: initialCards,
   renderer: (data) => {
-    const card = new Card(data.name, data.link, '.elements__template', () => openImage(card));
+    const card = new Card(data.name, data.link, '.elements__template', () => {
+      const image = new PopupWithImage(card, imageFullSize);
+      image.setEventListeners();
+      image.open();
+    });
     initial.addItem(card.create());
   }
 }, cardPosition);
