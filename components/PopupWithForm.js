@@ -1,9 +1,10 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-  constructor(popup, submitFormCallback) {
+  constructor({ popup, submitFormCallback }) {
     super(popup);
     this._submitFormCallback = submitFormCallback;
+    this._form = this._popup.querySelector('.popup__form');
   }
 
   open() {
@@ -11,17 +12,24 @@ export class PopupWithForm extends Popup {
   }
 
   close() {
+    this._form.reset();
     super.close();
-    //при закрытии попапа форма должна ещё и сбрасываться.
   }
 
   setEventListeners() {
+    this._form.addEventListener('submit', () => {
+      this._submitFormCallback(event, this._getInputValues());
+      this.close();
+    });
     super.setEventListeners();
-    //добавлять обработчик сабмита формы.
   }
 
   _getInputValues() {
-    //Собрать данные всех полей
+    this._inputsWithValues = {};
+    const inputs = Array.from(this._form.querySelectorAll('.popup__input'));
+    inputs.forEach(input => {
+      this._inputsWithValues[input.name] = input.value;
+    });
+    return this._inputsWithValues;
   }
-
 }

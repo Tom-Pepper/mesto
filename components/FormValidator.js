@@ -27,7 +27,7 @@ export class FormValidator {
       const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));
       inputs.forEach(input => {
         this.hideError(currentForm, input);
-      })
+      });
       this.toggleButton();
     }
   }

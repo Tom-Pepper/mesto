@@ -34,34 +34,10 @@ const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
 const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
 const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
-//Функция добавления новой карточки
-const addCardHandler = (evt) => {
-  evt.preventDefault();
-  const newPlace = new Card(placeDescInput.value, placeImgInput.value,
-    '.elements__template', () => {
-    const image = new PopupWithImage(newPlace, imageFullSize);
-    image.setEventListeners();
-    image.open();
-  });
-  cardPosition.prepend(newPlace.create());
-
-  placePopup.close();
-}
-
-//Изменение имени и "о себе" профиля
-const submitProfileEditForm = (evt) => {
-  evt.preventDefault();
-  nameToEdit.textContent = nameInput.value;
-  jobToEdit.textContent = jobInput.value;
-  profilePopup.close();
-
-  profileEditForm.reset();
-}
-
 // Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
-  nameInput.value = nameToEdit.textContent;
-  jobInput.value = jobToEdit.textContent;
+  nameInput.value = currentUser.getUserInfo().name;
+  jobInput.value = currentUser.getUserInfo().job;
   editProfileForm.clearErrors(popupEditProfile);
   profilePopup.open();
 });
@@ -73,15 +49,71 @@ buttonAddPlace.addEventListener('click', () => {
   placePopup.open();
 });
 
-// Слушатели отправки форм по нажатию кнопки в модалке (сохранение изменений в профиле и добавление карточки)
-formElement.addEventListener('submit', submitProfileEditForm);
-formAddPlace.addEventListener('submit', addCardHandler);
+// Объект профиля
+const currentUser = new UserInfo(
+  { name: nameToEdit,
+    job: jobToEdit });
 
-// Создание объектов поп-апов сайта
-const profilePopup = new Popup(popupEditProfile);
+// Функция заполнения имени и проф-и
+// function fillUserInfo(event, obj) {
+//   event.preventDefault();
+//   currentUser.setUserInfo({
+//     name: obj.name,
+//     job: obj.job
+//   });
+// };
+
+// Создание объекта поп-апа профилия
+const profilePopup = new PopupWithForm(
+  {
+    popup: popupEditProfile,
+    submitFormCallback: (event, values) => {
+      event.preventDefault();
+      currentUser.setUserInfo(
+        {
+          name: values.name,
+          job: values.job
+        }
+      );
+    }
+  }
+);
 profilePopup.setEventListeners();
-const placePopup = new Popup(addPlacePopup);
+//   evt.preventDefault();
+//   nameToEdit.textContent = nameInput.value;
+//   jobToEdit.textContent = jobInput.value;
+//   profilePopup.close();
+
+// Создание объекта поп-апа добавления карточки (места)
+const placePopup = new PopupWithForm(
+  {
+    popup: addPlacePopup,
+    submitFormCallback: (values) => {
+      const newPlace = new Card({values}, '.elements__template', () => {
+        const image = new PopupWithImage(newPlace, imageFullSize);
+        image.setEventListeners();
+        image.open();
+      })
+      cardPosition.prepend(newPlace.create());
+      placePopup.close();
+    }
+  }
+);
 placePopup.setEventListeners();
+//   addPlacePopup, (evt) => {
+//   evt.preventDefault();
+//   const newPlace = new Card(placeDescInput.value, placeImgInput.value,
+//     '.elements__template', () => {
+//       const image = new PopupWithImage(newPlace, imageFullSize);
+//       image.setEventListeners();
+//       image.open();
+//     });
+//   cardPosition.prepend(newPlace.create());
+//
+//   placePopup.close();
+// });
+// placePopup.setEventListeners();
+
 
 // Создание объектов форм в каждом поп-апе для валидации
 const editProfileForm = new FormValidator(validationObj, formElement);
@@ -93,7 +125,7 @@ newPlaceForm.enableValidation();
 const initial = new Section({
   items: initialCards,
   renderer: (data) => {
-    const card = new Card(data.name, data.link, '.elements__template', () => {
+    const card = new Card({ data }, '.elements__template', () => {
       const image = new PopupWithImage(card, imageFullSize);
       image.setEventListeners();
       image.open();
@@ -102,4 +134,5 @@ const initial = new Section({
   }
 }, cardPosition);
 
+//Отрисовка начального массива картинок
 initial.renderItems();
