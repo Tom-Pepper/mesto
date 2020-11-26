@@ -1,3 +1,4 @@
+// Класс для профиля пользователя
 export class UserInfo {
   constructor({ name, job }) {
     this._name = name;

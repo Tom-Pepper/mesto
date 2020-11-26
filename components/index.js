@@ -34,6 +34,73 @@ const fullSizeCloseButton = imageFullSize.querySelector('.popup-image__close');
 const fullSizePhoto = imageFullSize.querySelector('.popup-image__preview');
 const imageFullSizeTitle = imageFullSize.querySelector('.popup-image__title');
 
+// Объект профиля
+const currentUser = new UserInfo(
+  { name: nameToEdit,
+    job: jobToEdit });
+
+
+// Создание объекта поп-апа профилия
+const profilePopup = new PopupWithForm(
+  {
+    popup: popupEditProfile,
+    submitFormCallback: (event, values) => {
+      event.preventDefault();
+      currentUser.setUserInfo(
+        {
+          name: values['profile-name'],
+          job: values['profile-job']
+        }
+      );
+    }
+  }
+);
+profilePopup.setEventListeners();
+
+// Создание объекта поп-апа добавления карточки (места)
+const placePopup = new PopupWithForm(
+  {
+    popup: addPlacePopup,
+    submitFormCallback: (event, values) => {
+      event.preventDefault();
+      const newPlace = new Card({
+        name: values['place-name'],
+        link: values['place-link']
+      }, '.elements__template', () => {
+        const image = new PopupWithImage(newPlace, imageFullSize);
+        image.setEventListeners();
+        image.open();
+      })
+      cardPosition.prepend(newPlace.create());
+      placePopup.close();
+    }
+  }
+);
+placePopup.setEventListeners();
+
+
+// Создание объектов форм в каждом поп-апе для валидации
+const editProfileForm = new FormValidator(validationObj, formElement);
+editProfileForm.enableValidation();
+const newPlaceForm = new FormValidator(validationObj, formAddPlace);
+newPlaceForm.enableValidation();
+
+// Создание объекта для отрисовки изначального массива картинок
+const initial = new Section({
+  items: initialCards,
+  renderer: (data) => {
+    const card = new Card({
+      name: data.name,
+      link: data.link
+    }, '.elements__template', () => {
+      const image = new PopupWithImage(card, imageFullSize);
+      image.setEventListeners();
+      image.open();
+    });
+    initial.addItem(card.create());
+  }
+}, cardPosition);
+
 // Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
   nameInput.value = currentUser.getUserInfo().name;
@@ -48,91 +115,6 @@ buttonAddPlace.addEventListener('click', () => {
   newPlaceForm.clearErrors(addPlacePopup);
   placePopup.open();
 });
-
-// Объект профиля
-const currentUser = new UserInfo(
-  { name: nameToEdit,
-    job: jobToEdit });
-
-// Функция заполнения имени и проф-и
-// function fillUserInfo(event, obj) {
-//   event.preventDefault();
-//   currentUser.setUserInfo({
-//     name: obj.name,
-//     job: obj.job
-//   });
-// };
-
-// Создание объекта поп-апа профилия
-const profilePopup = new PopupWithForm(
-  {
-    popup: popupEditProfile,
-    submitFormCallback: (event, values) => {
-      event.preventDefault();
-      currentUser.setUserInfo(
-        {
-          name: values.name,
-          job: values.job
-        }
-      );
-    }
-  }
-);
-profilePopup.setEventListeners();
-//   evt.preventDefault();
-//   nameToEdit.textContent = nameInput.value;
-//   jobToEdit.textContent = jobInput.value;
-//   profilePopup.close();
-
-// Создание объекта поп-апа добавления карточки (места)
-const placePopup = new PopupWithForm(
-  {
-    popup: addPlacePopup,
-    submitFormCallback: (values) => {
-      const newPlace = new Card({values}, '.elements__template', () => {
-        const image = new PopupWithImage(newPlace, imageFullSize);
-        image.setEventListeners();
-        image.open();
-      })
-      cardPosition.prepend(newPlace.create());
-      placePopup.close();
-    }
-  }
-);
-placePopup.setEventListeners();
-//   addPlacePopup, (evt) => {
-//   evt.preventDefault();
-//   const newPlace = new Card(placeDescInput.value, placeImgInput.value,
-//     '.elements__template', () => {
-//       const image = new PopupWithImage(newPlace, imageFullSize);
-//       image.setEventListeners();
-//       image.open();
-//     });
-//   cardPosition.prepend(newPlace.create());
-//
-//   placePopup.close();
-// });
-// placePopup.setEventListeners();
-
-
-// Создание объектов форм в каждом поп-апе для валидации
-const editProfileForm = new FormValidator(validationObj, formElement);
-editProfileForm.enableValidation();
-const newPlaceForm = new FormValidator(validationObj, formAddPlace);
-newPlaceForm.enableValidation();
-
-// Создание объекта для отрисовки изначального массива картинок
-const initial = new Section({
-  items: initialCards,
-  renderer: (data) => {
-    const card = new Card({ data }, '.elements__template', () => {
-      const image = new PopupWithImage(card, imageFullSize);
-      image.setEventListeners();
-      image.open();
-    });
-    initial.addItem(card.create());
-  }
-}, cardPosition);
 
 //Отрисовка начального массива картинок
 initial.renderItems();
