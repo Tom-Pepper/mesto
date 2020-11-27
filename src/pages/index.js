@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -21,6 +23,13 @@ import {
   cardPosition,
   imageFullSize
 } from "../utils/constants.js";
+
+// Функция для создания экземпляра открытия превью картинки
+function openImage(object, photo) {
+  const imageToOpen = new PopupWithImage(object, photo);
+  imageToOpen.setEventListeners();
+  imageToOpen.open();
+}
 
 // Объект профиля
 const currentUser = new UserInfo(
@@ -53,11 +62,7 @@ const placePopup = new PopupWithForm(
       const newPlace = new Card({
         name: values['place-name'],
         link: values['place-link']
-      }, '.elements__template', () => {
-        const image = new PopupWithImage(newPlace, imageFullSize);
-        image.setEventListeners();
-        image.open();
-      });
+      }, '.elements__template', () => openImage(newPlace, imageFullSize));
       cardPosition.prepend(newPlace.create());
       placePopup.close();
     }
@@ -78,11 +83,7 @@ const initial = new Section({
     const card = new Card({
       name: data.name,
       link: data.link
-    }, '.elements__template', () => {
-      const image = new PopupWithImage(card, imageFullSize);
-      image.setEventListeners();
-      image.open();
-    });
+    }, '.elements__template', () => openImage(card, imageFullSize));
     initial.addItem(card.create());
   }
 }, cardPosition);

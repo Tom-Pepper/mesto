@@ -21,7 +21,7 @@ export class FormValidator {
 
   // Функция очистки текста ошибок и проверка состояния кнопки сабмита (вызывать у нужного объекта
   // перед открытием поп-апов в index.js)
-  clearErrors = (popup) => {
+  clearErrors(popup) {
     const currentForm = popup.querySelector('.popup__form');
     if (currentForm) {
       const inputs = Array.from(currentForm.querySelectorAll('.popup__input'));

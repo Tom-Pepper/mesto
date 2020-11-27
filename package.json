@@ -4,7 +4,8 @@
   "description": "Адаптивный веб- сайт с местами в России, которые стоит посетить. Тут можно добавлять места, удалять, лайкать фото и менять имя профиля.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,32 @@
   "bugs": {
     "url": "https://github.com/Tom-Pepper/mesto/issues"
   },
-  "homepage": "https://github.com/Tom-Pepper/mesto#readme"
+  "homepage": "https://github.com/Tom-Pepper/mesto#readme",
+  "keywords": [
+    "js",
+    "html",
+    "css",
+    "webpack",
+    "javascript",
+    "oop"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "autoprefixer": "^10.0.3",
+    "babel-loader": "^8.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "cssnano": "^4.1.10",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.1",
+    "postcss-loader": "^4.1.0",
+    "webpack": "^5.7.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "core-js": "^3.8.0",
+    "rimraf": "^3.0.2"
+  }
 }

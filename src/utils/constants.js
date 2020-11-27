@@ -1,28 +1,36 @@
+// Импорт картинок для сборки вебпаком
+import olkhon from '../images/olkhon-island.jpg';
+import elbrus from '../images/elbrus-mtn.jpg';
+import magadan from '../images/magadan.jpg';
+import cherkessia from '../images/karachaevo-cherkessia.jpg';
+import altai from '../images/altay.jpg';
+import ozero from '../images/onezhskoe-ozero.jpg';
+
 // Массив для вставки карточек при загрузке сайта
 export const initialCards = [
   {
     name: 'Остров Ольхон',
-    link: './images/olkhon-island.jpg'
+    link: olkhon
   },
   {
     name: 'Гора Эльбрус',
-    link: './images/elbrus-mtn.jpg'
+    link: elbrus
   },
   {
     name: 'Магадан',
-    link: './images/magadan.jpg'
+    link: magadan
   },
   {
     name: 'Карачаево- Черкессия',
-    link: './images/karachaevo-cherkessia.jpg'
+    link: cherkessia
   },
   {
     name: 'Алтай',
-    link: './images/altay.jpg'
+    link: altai
   },
   {
     name: 'Онежское озеро',
-    link: './images/onezhskoe-ozero.jpg'
+    link: ozero
   }
 ];
 
