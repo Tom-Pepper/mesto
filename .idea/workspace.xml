@@ -26,7 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EditorConfigPreviewManager">
-    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/webpack.config.js" />
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/src/utils/constants.js" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -101,7 +101,7 @@
       <workItem from="1605866098197" duration="193000" />
       <workItem from="1605866358169" duration="512000" />
       <workItem from="1606138143826" duration="42467000" />
-      <workItem from="1606393335810" duration="12513000" />
+      <workItem from="1606393335810" duration="12781000" />
     </task>
     <servers />
   </component>
