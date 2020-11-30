@@ -28,6 +28,15 @@ import {
 const openImage = new PopupWithImage(imageFullSize);
 openImage.setEventListeners();
 
+// Создание объекта карточки
+function createCard(values, selector) {
+  const card = new Card({
+    name: values['place-name'] || values.name,
+    link: values['place-link'] || values.link
+  }, selector, () => openImage.open(card));
+  return card;
+}
+
 // Объект профиля
 const currentUser = new UserInfo(
   { name: nameToEdit,
@@ -56,10 +65,7 @@ const placePopup = new PopupWithForm(
     popup: addPlacePopup,
     submitFormCallback: (event, values) => {
       event.preventDefault();
-      const newPlace = new Card({
-        name: values['place-name'],
-        link: values['place-link']
-      }, '.elements__template', () => openImage.open(newPlace));
+      const newPlace = createCard(values, '.elements__template');
       cardsSection.addItem(newPlace.create(), false);
       placePopup.close();
     }
@@ -77,10 +83,7 @@ newPlaceForm.enableValidation();
 const cardsSection = new Section({
   items: initialCards,
   renderer: (data) => {
-    const card = new Card({
-      name: data.name,
-      link: data.link
-    }, '.elements__template', () => openImage.open(card));
+    const card = createCard(data, '.elements__template')
     cardsSection.addItem(card.create(), true);
   }
 }, cardPosition);
