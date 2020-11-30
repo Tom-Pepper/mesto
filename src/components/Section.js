@@ -12,7 +12,12 @@ export class Section {
     });
   }
 
-  addItem(item) {
-    this._containter.append(item);
+  addItem(item, toEnd) {
+    if (toEnd) {
+      this._containter.append(item);
+    } else {
+      this._containter.prepend(item);
+    }
+
   }
 }

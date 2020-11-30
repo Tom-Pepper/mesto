@@ -8,10 +8,6 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
   }
 
-  open() {
-    super.open();
-  }
-
   close() {
     this._form.reset();
     super.close();
@@ -26,11 +22,11 @@ export class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._inputsWithValues = {};
+    const inputsWithValues = {};
     this._inputs = this._popup.querySelectorAll('.popup__input');
     this._inputs.forEach((input) => {
-      this._inputsWithValues[input.name] = input.value;
+      inputsWithValues[input.name] = input.value;
     });
-    return this._inputsWithValues;
+    return inputsWithValues;
   }
 }

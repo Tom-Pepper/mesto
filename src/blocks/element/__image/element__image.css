@@ -4,4 +4,9 @@
   height: 282px;
   min-height: 282px;
   cursor: pointer;
+  transition: opacity 0.1s ease-in-out 0.1s;
+}
+
+.element__image:hover {
+  opacity: 0.8;
 }

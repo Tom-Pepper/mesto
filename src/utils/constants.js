@@ -42,7 +42,7 @@ export const validationObj = {
   inactiveButtonClass: 'popup__button_disabled',
   errorClass: 'popup__error_visible',
   inputErrorClass: 'popup__input_type_error'
-}
+};
 
 // Констарнты - селекторы
 export const buttonEditProfile = document.querySelector(".profile__edit-button");

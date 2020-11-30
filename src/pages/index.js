@@ -63,7 +63,8 @@ const placePopup = new PopupWithForm(
         name: values['place-name'],
         link: values['place-link']
       }, '.elements__template', () => openImage(newPlace, imageFullSize));
-      cardPosition.prepend(newPlace.create());
+      // cardPosition.prepend(newPlace.create());
+      cardsSection.addItem(newPlace.create(), false);
       placePopup.close();
     }
   }
@@ -77,21 +78,22 @@ const newPlaceForm = new FormValidator(validationObj, formAddPlace);
 newPlaceForm.enableValidation();
 
 // Создание объекта для отрисовки изначального массива картинок
-const initial = new Section({
+const cardsSection = new Section({
   items: initialCards,
   renderer: (data) => {
     const card = new Card({
       name: data.name,
       link: data.link
     }, '.elements__template', () => openImage(card, imageFullSize));
-    initial.addItem(card.create());
+    cardsSection.addItem(card.create(), true);
   }
 }, cardPosition);
 
 // Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
-  nameInput.value = currentUser.getUserInfo().name;
-  jobInput.value = currentUser.getUserInfo().job;
+  const getUserInfo = currentUser.getUserInfo();
+  nameInput.value = getUserInfo.name;
+  jobInput.value = getUserInfo.job;
   editProfileForm.clearErrors(popupEditProfile);
   profilePopup.open();
 });
@@ -103,4 +105,4 @@ buttonAddPlace.addEventListener('click', () => {
 });
 
 //Отрисовка начального массива картинок
-initial.renderItems();
+cardsSection.renderItems();

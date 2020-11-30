@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "Адаптивный веб- сайт с местами в России, которые стоит посетить. Тут можно добавлять места, удалять, лайкать фото и менять имя профиля.",
-  "main": "index.js",
+  "main": "./src/pages/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve"

@@ -6,11 +6,11 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    this._profile = {
+    const profile = {
       name: this._name.textContent,
       job: this._job.textContent
-    }
-    return this._profile;
+    };
+    return profile;
   }
 
   setUserInfo({ name, job }) {

@@ -3,8 +3,8 @@ export class Card {
   constructor({ name, link }, templateSelector, openImage) {
     this.name = name;
     this.link = link;
-    this._templateSelector = document.querySelector(templateSelector).content;
-    this.openImage = openImage;
+    this._template = document.querySelector(templateSelector).content;
+    this._openImage = openImage;
   }
 
   _like(evt) {
@@ -18,7 +18,7 @@ export class Card {
   }
 
   create() {
-    this._content = this._templateSelector.cloneNode(true);
+    this._content = this._template.cloneNode(true);
     this._content
       .querySelector('.element__title')
       .innerText = this.name;
@@ -35,7 +35,7 @@ export class Card {
       .querySelector('.element__delete-button')
       .addEventListener('click', this._delete);
 
-    this.image.addEventListener('click', this.openImage);
+    this.image.addEventListener('click', this._openImage);
 
     return this._content;
   }
