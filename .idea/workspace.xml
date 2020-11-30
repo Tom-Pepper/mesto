@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +106,7 @@
       <workItem from="1606138143826" duration="42467000" />
       <workItem from="1606393335810" duration="12781000" />
       <workItem from="1606485392916" duration="563000" />
-      <workItem from="1606725709517" duration="11144000" />
+      <workItem from="1606725709517" duration="12100000" />
     </task>
     <servers />
   </component>
@@ -126,10 +126,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="362" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606406229427">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="1823" y="282" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606757658370">
+      <screen x="1280" y="0" width="1920" height="1080" />
     </state>
     <state x="362" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606406229427" />
+    <state x="1823" y="282" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1606757658370" />
     <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603807322863">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

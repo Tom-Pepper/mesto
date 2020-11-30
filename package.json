@@ -25,6 +25,9 @@
     "javascript",
     "oop"
   ],
+  "browserslist": [
+    "defaults"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
