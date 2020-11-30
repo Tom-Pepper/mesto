@@ -24,12 +24,9 @@ import {
   imageFullSize
 } from "../utils/constants.js";
 
-// Функция для создания экземпляра открытия превью картинки
-function openImage(object, photo) {
-  const imageToOpen = new PopupWithImage(object, photo);
-  imageToOpen.setEventListeners();
-  imageToOpen.open();
-}
+// Создание объекта для карточки- превьюхи
+const openImage = new PopupWithImage(imageFullSize);
+openImage.setEventListeners();
 
 // Объект профиля
 const currentUser = new UserInfo(
@@ -62,8 +59,7 @@ const placePopup = new PopupWithForm(
       const newPlace = new Card({
         name: values['place-name'],
         link: values['place-link']
-      }, '.elements__template', () => openImage(newPlace, imageFullSize));
-      // cardPosition.prepend(newPlace.create());
+      }, '.elements__template', () => openImage.open(newPlace));
       cardsSection.addItem(newPlace.create(), false);
       placePopup.close();
     }
@@ -71,7 +67,7 @@ const placePopup = new PopupWithForm(
 );
 placePopup.setEventListeners();
 
-// Создание объектов форм в каждом поп-апе для валидации
+// Валидация поп-апов профиля и добавления карточки
 const editProfileForm = new FormValidator(validationObj, formElement);
 editProfileForm.enableValidation();
 const newPlaceForm = new FormValidator(validationObj, formAddPlace);
@@ -84,12 +80,12 @@ const cardsSection = new Section({
     const card = new Card({
       name: data.name,
       link: data.link
-    }, '.elements__template', () => openImage(card, imageFullSize));
+    }, '.elements__template', () => openImage.open(card));
     cardsSection.addItem(card.create(), true);
   }
 }, cardPosition);
 
-// Слушатель. Открытие поп-апа редактирования профиля по клику на кнопку
+// Кнопка редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
   const getUserInfo = currentUser.getUserInfo();
   nameInput.value = getUserInfo.name;
@@ -98,7 +94,7 @@ buttonEditProfile.addEventListener('click', () => {
   profilePopup.open();
 });
 
-// Слушатель открытия окна добавления новой карточки
+// Кнопка добавления новой карточки
 buttonAddPlace.addEventListener('click', () => {
   newPlaceForm.clearErrors(addPlacePopup);
   placePopup.open();
