@@ -25,15 +25,15 @@ import {
 } from "../utils/constants.js";
 
 // Создание объекта для карточки- превьюхи
-const openImage = new PopupWithImage(imageFullSize);
-openImage.setEventListeners();
+const imagePreview = new PopupWithImage(imageFullSize);
+imagePreview.setEventListeners();
 
 // Создание объекта карточки
 function createCard(values, selector) {
-  const card = new Card({
-    name: values['place-name'] || values.name,
-    link: values['place-link'] || values.link
-  }, selector, () => openImage.open(card));
+  const card = new Card(values
+    // name: values['place-name'] || values.name,
+    // link: values['place-link'] || values.link
+  , selector, () => imagePreview.open(card));
   return card;
 }
 
@@ -65,7 +65,10 @@ const placePopup = new PopupWithForm(
     popup: addPlacePopup,
     submitFormCallback: (event, values) => {
       event.preventDefault();
-      const newPlace = createCard(values, '.elements__template');
+      const newPlace = createCard({
+        name: values['place-name'],
+        link: values['place-link']
+      }, '.elements__template');
       cardsSection.addItem(newPlace.create(), false);
       placePopup.close();
     }
@@ -83,16 +86,19 @@ newPlaceForm.enableValidation();
 const cardsSection = new Section({
   items: initialCards,
   renderer: (data) => {
-    const card = createCard(data, '.elements__template')
+    const card = createCard({
+      name: data.name,
+      link: data.link
+    }, '.elements__template')
     cardsSection.addItem(card.create(), true);
   }
 }, cardPosition);
 
 // Кнопка редактирования профиля по клику на кнопку
 buttonEditProfile.addEventListener('click', () => {
-  const getUserInfo = currentUser.getUserInfo();
-  nameInput.value = getUserInfo.name;
-  jobInput.value = getUserInfo.job;
+  const userInfo = currentUser.getUserInfo();
+  nameInput.value = userInfo.name;
+  jobInput.value = userInfo.job;
   editProfileForm.clearErrors(popupEditProfile);
   profilePopup.open();
 });
