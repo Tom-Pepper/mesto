@@ -6,6 +6,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 
 import {
   validationObj,
@@ -30,10 +31,7 @@ imagePreview.setEventListeners();
 
 // Создание объекта карточки
 function createCard(values, selector) {
-  const card = new Card(values
-    // name: values['place-name'] || values.name,
-    // link: values['place-link'] || values.link
-  , selector, () => imagePreview.open(card));
+  const card = new Card(values, selector, () => imagePreview.open(card));
   return card;
 }
 
@@ -111,3 +109,18 @@ buttonAddPlace.addEventListener('click', () => {
 
 //Отрисовка начального массива картинок
 cardsSection.renderItems();
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-18/users/me',
+  headers: {
+    authorization: "36f02e32-425e-4cd6-9a5e-ab45df68f83b",
+    "content-type": "application/json"
+  }
+});
+const userData = api.getUserData();
+userData.then(data => {
+  const currentUser = new UserInfo({
+    name: data.name,
+    job: data.about,
+  });
+})

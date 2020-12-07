@@ -20,9 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c6d4e01-7624-496c-a329-324458fc0185" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__confirm-delete/popup__confirm-delete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PopupWithImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PopupWithImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/olkhon-island.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +111,9 @@
       <workItem from="1606138143826" duration="42467000" />
       <workItem from="1606393335810" duration="12781000" />
       <workItem from="1606485392916" duration="563000" />
-      <workItem from="1606725709517" duration="12732000" />
+      <workItem from="1606725709517" duration="13077000" />
+      <workItem from="1607340967359" duration="237000" />
+      <workItem from="1607341394701" duration="5721000" />
     </task>
     <servers />
   </component>
@@ -126,53 +131,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1823" y="282" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606757658370">
-      <screen x="1280" y="0" width="1920" height="1080" />
-    </state>
-    <state x="362" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606406229427" />
-    <state x="1823" y="282" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1606757658370" />
-    <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603807322863">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="378" y="154" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800@0.0.1280.800" timestamp="1603807322863" />
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom" timestamp="1606485328289">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606485328289" />
-    <state width="1259" height="212" key="GridCell.Tab.0.center" timestamp="1606485328286">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.center/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606485328286" />
-    <state width="1259" height="212" key="GridCell.Tab.0.left" timestamp="1606485328283">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.left/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606485328283" />
-    <state width="1259" height="212" key="GridCell.Tab.0.right" timestamp="1606485328288">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.right/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1606485328288" />
-    <state x="450" y="109" key="RollbackChangesDialog" timestamp="1603697774745">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="450" y="109" key="RollbackChangesDialog/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1603697774745" />
-    <state x="1749" y="179" key="SettingsEditor" timestamp="1604910827426">
-      <screen x="1280" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1749" y="179" key="SettingsEditor/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604910827426" />
-    <state x="1749" y="179" key="SettingsEditor/0.23.1280.777/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604910737033" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1603697815849">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="600" height="428" key="javadoc.popup/0.0.1280.800/1280.0.1920.1080@0.0.1280.800" timestamp="1603697815849" />
-    <state x="346" y="102" width="700" height="530" key="recent.locations.popup" timestamp="1602231637520">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="346" y="102" width="700" height="530" key="recent.locations.popup/0.0.1280.800@0.0.1280.800" timestamp="1602231637520" />
-    <state x="1905" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1604909094958">
-      <screen x="1280" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1905" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1280.800/1280.0.1920.1080@1280.0.1920.1080" timestamp="1604909094958" />
   </component>
 </project>
