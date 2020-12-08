@@ -37,6 +37,10 @@ export class Api {
       .catch(err => this._errorMessage(err));
   }
 
+  getInitialData() {
+    return Promise.all([this.getUserData(), this.getCards()]);
+  }
+
   editProfile(name, job) {
     return fetch(`${this._url}users/me`,
       {
@@ -50,7 +54,7 @@ export class Api {
   }
 
   addNewCard(name, link) {
-    return fetch(`${this._url}cards`),
+    return fetch(`${this._url}cards`,
       {
         method: "POST",
         headers: this._headers,
@@ -58,7 +62,7 @@ export class Api {
           name: name,
           link: link
         })
-      }
+      })
   }
 
 }

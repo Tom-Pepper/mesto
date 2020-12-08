@@ -1,8 +1,20 @@
 // Класс добавления новой карточки, с функционалом лайка и удаления
 export class Card {
-  constructor({ name, link }, templateSelector, openImage) {
+  constructor(
+    { name,
+      link,
+      id,
+      owner,
+      likes = []
+    },
+    templateSelector,
+    openImage
+  ) {
     this.name = name;
     this.link = link;
+    this._id = id;
+    this._owner = owner;
+    this._likes = likes;
     this._template = document.querySelector(templateSelector).content;
     this._openImage = openImage;
   }

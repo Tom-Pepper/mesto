@@ -46,6 +46,8 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__confirm-delete/popup__confirm-delete.css);
 @import url(../blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
+@import url(../blocks/element/__like-counter/element__like-counter.css);
+@import url(../blocks/element/__like-wrapper/element__like-wrapper.css);
 
 
 /* Cтили фото в полном размере (pop-up)*/
