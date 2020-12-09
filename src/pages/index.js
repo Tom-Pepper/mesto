@@ -30,27 +30,10 @@ const imagePreview = new PopupWithImage(imageFullSize);
 imagePreview.setEventListeners();
 
 // Создание объекта карточки
-function createCard(values, selector) {
-  const card = new Card( values, selector, () => imagePreview.open(card));
+function createCard(values, selector, api) {
+  const card = new Card( values, selector, () => imagePreview.open(card), api);
   return card.create(currentUser.getId());
 }
-
-// Создание объекта поп-апа добавления карточки (места)
-// const placePopup = new PopupWithForm(
-//   {
-//     popup: addPlacePopup,
-//     submitFormCallback: (event, values) => {
-//       event.preventDefault();
-//       const newPlace = createCard({
-//         name: values['place-name'],
-//         link: values['place-link']
-//       }, '.elements__template');
-//       cardsSection.addItem(newPlace.create(), false);
-//       placePopup.close();
-//     }
-//   }
-// );
-// placePopup.setEventListeners();
 
 // Валидация поп-апов профиля и добавления карточки
 const editProfileForm = new FormValidator(validationObj, formElement);
@@ -58,18 +41,12 @@ editProfileForm.enableValidation();
 const newPlaceForm = new FormValidator(validationObj, formAddPlace);
 newPlaceForm.enableValidation();
 
-// Кнопка добавления новой карточки
-// buttonAddPlace.addEventListener('click', () => {
-//   newPlaceForm.clearErrors(addPlacePopup);
-//   placePopup.open();
-// });
-
 //------------------------------------------------------------------------
 //----------------------------API-----------------------------
 //------------------------------------------------------------------------
 
 //Функция возврата текста ошибки для catch'a
-function catchError(err) {
+export function catchError(err) {
   return `Что-то пошло не так. Ошибка: ${err.status}. ${err.message}`;
 }
 
@@ -121,7 +98,7 @@ api.getInitialData()
     );
     profilePopup.setEventListeners();
 
-//Слушатель кнопки редактирования профиля
+//Кнопка редактирования профиля (обработчик клика)
     buttonEditProfile.addEventListener('click', () => {
       const profileInfo = currentUser.getUserInfo();
       nameInput.value = profileInfo.name;
@@ -137,8 +114,10 @@ api.getInitialData()
         createCard({
           name: item.name,
           link: item.link,
+          id: item._id,
+          likes: item.likes,
           owner: { _id: item.owner._id }
-        }, '.elements__template'), true)}, cardPosition);
+        }, '.elements__template', api), true)}, cardPosition);
     cardsSection.renderItems();
 
 //Добавление новой карточки
@@ -147,15 +126,16 @@ api.getInitialData()
       submitFormCallback: (event, values) => {
         event.preventDefault();
         api.addNewCard(values['place-name'], values['place-link'])
-          .then(() => {
+          .then((res) => {
             const newCard = createCard(
               {
                 name: values['place-name'],
                 link: values['place-link'],
+                id: res._id,
                 owner: {
                   _id: currentUser.getId()
                 }
-              }, '.elements__template', currentUser.getId());
+              }, '.elements__template', api);
             cardsSection.addItem(newCard, false);
             placePopup.close();
           })
@@ -164,10 +144,14 @@ api.getInitialData()
     });
     placePopup.setEventListeners();
 
-// Кнопка добавления новой карточки
+//Кнопка добавления новой карточки (обработчик клика)
     buttonAddPlace.addEventListener('click', () => {
       newPlaceForm.clearErrors(addPlacePopup);
       placePopup.open();
     });
   })
   .catch(err => catchError(err));
+
+//Удаление карточки с сервера
+
+

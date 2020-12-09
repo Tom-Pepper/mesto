@@ -51,6 +51,14 @@ export class Api {
           about: job
         })
       })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
   }
 
   addNewCard(name, link) {
@@ -63,6 +71,46 @@ export class Api {
           link: link
         })
       })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
+  }
+
+  likeCard(id) {
+    return fetch(`${this._url}cards/likes/${id}`,
+      {
+        method: "PUT",
+        headers: this._headers
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
+  }
+
+  dislikeCard(id) {
+    return fetch(`${this._url}cards/likes/${id}`,
+      {
+        method: "DELETE",
+        headers: this._headers,
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
   }
 
 }
