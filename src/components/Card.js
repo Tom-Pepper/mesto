@@ -8,12 +8,12 @@ export class Card {
       likes = []
     },
     templateSelector,
-    openImage
+    openImage,
   ) {
     this.name = name;
     this.link = link;
     this._id = id;
-    this._owner = owner;
+    this._owner = owner._id;
     this._likes = likes;
     this._template = document.querySelector(templateSelector).content;
     this._openImage = openImage;
@@ -29,8 +29,13 @@ export class Card {
     deleteTarget.closest('.element').remove();
   }
 
-  create() {
+  create(profileId) {
     this._content = this._template.cloneNode(true);
+    this._deleteButton = this._content.querySelector('.element__delete-button');
+    if (profileId === this._owner) {
+      this._deleteButton.classList.add('element__delete-button_visible')
+    }
+
     this._content
       .querySelector('.element__title')
       .innerText = this.name;
@@ -43,9 +48,7 @@ export class Card {
       .querySelector('.element__like-button')
       .addEventListener('click', this._like);
 
-    this._content
-      .querySelector('.element__delete-button')
-      .addEventListener('click', this._delete);
+    this._deleteButton.addEventListener('click', this._delete);
 
     this.image.addEventListener('click', this._openImage);
 

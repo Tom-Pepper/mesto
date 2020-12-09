@@ -32,7 +32,7 @@ imagePreview.setEventListeners();
 // Создание объекта карточки
 function createCard(values, selector) {
   const card = new Card( values, selector, () => imagePreview.open(card));
-  return card;
+  return card.create(currentUser.getId());
 }
 
 // Создание объекта поп-апа добавления карточки (места)
@@ -133,14 +133,12 @@ api.getInitialData()
 //Отрисовка массива карточек с сервера
     const cardsSection = new Section({
       items: cards,
-      renderer: (array) => {
-        const card = createCard({
-          name: array.name,
-          link: array.link,
-        }, '.elements__template')
-        cardsSection.addItem(card.create(), true);
-      }
-    }, cardPosition);
+      renderer: (item) => cardsSection.addItem(
+        createCard({
+          name: item.name,
+          link: item.link,
+          owner: { _id: item.owner._id }
+        }, '.elements__template'), true)}, cardPosition);
     cardsSection.renderItems();
 
 //Добавление новой карточки
@@ -149,17 +147,16 @@ api.getInitialData()
       submitFormCallback: (event, values) => {
         event.preventDefault();
         api.addNewCard(values['place-name'], values['place-link'])
-          .then(cards => {
+          .then(() => {
             const newCard = createCard(
               {
                 name: values['place-name'],
                 link: values['place-link'],
-                id: cards._id,
-                owner: currentUser.getId()
-              },
-              '.elements__template');
-            cardsSection.addItem(newCard.create(),
-              false);
+                owner: {
+                  _id: currentUser.getId()
+                }
+              }, '.elements__template', currentUser.getId());
+            cardsSection.addItem(newCard, false);
             placePopup.close();
           })
           .catch(err => catchError(err));
