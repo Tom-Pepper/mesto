@@ -129,4 +129,23 @@ export class Api {
       .catch(err => this._errorMessage(err));
   }
 
+  uploadAvatar(url) {
+    return fetch(`${this._url}users/me/avatar`,
+      {
+        method: "PATCH",
+        headers: this._headers,
+        body: JSON.stringify({
+          avatar: url
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
+  }
+
 }

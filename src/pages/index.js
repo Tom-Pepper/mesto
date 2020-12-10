@@ -24,7 +24,10 @@ import {
   formAddPlace,
   cardPosition,
   imageFullSize,
-  deletePopup
+  deletePopup,
+  editAvatarPopup,
+  formEditAvatar,
+  avatarChangeButton
 } from "../utils/constants.js";
 
 // Создание объекта для карточки- превьюхи
@@ -38,11 +41,13 @@ function createCard(values, selector, api) {
   return card.create(currentUser.getId());
 }
 
-// Валидация поп-апов профиля и добавления карточки
+// Валидация поп-апов профиля, добавления карточки, обновления аватарки
 const editProfileForm = new FormValidator(validationObj, formElement);
 editProfileForm.enableValidation();
 const newPlaceForm = new FormValidator(validationObj, formAddPlace);
 newPlaceForm.enableValidation();
+const editAvatarForm = new FormValidator(validationObj, formEditAvatar);
+editAvatarForm.enableValidation();
 
 //------------------------------------------------------------------------
 //----------------------------API-----------------------------
@@ -167,3 +172,23 @@ const confirmDeletePopup = new PopupConfirmAction(deletePopup, card => {
 });
 confirmDeletePopup.setEventListeners();
 
+//Изменение аватарки
+const editAvatar = new PopupWithForm({
+  popup: editAvatarPopup,
+  submitFormCallback: (event, value) => {
+    event.preventDefault();
+    api.uploadAvatar(value['avatar'])
+      .then(() => {
+        currentUser.setUserAvatar(value['avatar']);
+        editAvatar.close();
+      })
+      .catch(err => catchError(err));
+  }
+});
+editAvatar.setEventListeners();
+
+//Обработчик кнопки редактирования аватара
+avatarChangeButton.addEventListener('click', () => {
+  editAvatarForm.clearErrors(editAvatarPopup);
+  editAvatar.open();
+})
