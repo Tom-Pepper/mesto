@@ -22,3 +22,4 @@ export const profileAvatar = document.querySelector(".profile__avatar");
 export const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form');
 export const cardPosition = document.querySelector('.elements');
 export const imageFullSize = document.querySelector('.popup-image');
+export const deletePopup = document.querySelector('.popup__confirm-delete');

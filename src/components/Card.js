@@ -11,6 +11,7 @@ export class Card {
     },
     templateSelector,
     openImage,
+    deleteCardCallBack,
     api
   ) {
     this.name = name;
@@ -20,7 +21,11 @@ export class Card {
     this._likes = likes;
     this._template = document.querySelector(templateSelector).content;
     this._openImage = openImage;
+    this._deleteCard = deleteCardCallBack;
     this._api = api;
+
+    this._like = this._like.bind(this);
+    this._delete = this._delete.bind(this);
   }
 
   _setLikes(number) {
@@ -49,22 +54,22 @@ export class Card {
     this._likeButton.classList.toggle('element__like-button_active');
   }
 
-  _delete(evt) {
-    const deleteTarget = evt.target;
-    deleteTarget.closest('.element').remove();
+  _delete() {
+    this._deleteCard();
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener('click', this._like.bind(this));
-    this._deleteButton.addEventListener('click', this._delete);
+    this._likeButton.addEventListener('click', this._like);
     this.image.addEventListener('click', this._openImage);
+    this._deleteButton.addEventListener('click', this._delete);
   }
 
   create(profileId) {
-    this._content = this._template.cloneNode(true);
+    this._content = this._template.querySelector('.element').cloneNode(true);
+
     this._deleteButton = this._content.querySelector('.element__delete-button');
     this._likeButton = this._content.querySelector('.element__like-button');
-    this._likeCounter = this._content.querySelector('.element__like-counter')
+    this._likeCounter = this._content.querySelector('.element__like-counter');
 
     if(this._likes.some(like => like._id === profileId)) {
       this._likeToggle();

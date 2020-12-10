@@ -7,6 +7,7 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
+import { PopupConfirmAction } from "../components/PopupConfirmAction.js";
 
 import {
   validationObj,
@@ -22,7 +23,8 @@ import {
   profileAvatar,
   formAddPlace,
   cardPosition,
-  imageFullSize
+  imageFullSize,
+  deletePopup
 } from "../utils/constants.js";
 
 // Создание объекта для карточки- превьюхи
@@ -31,7 +33,8 @@ imagePreview.setEventListeners();
 
 // Создание объекта карточки
 function createCard(values, selector, api) {
-  const card = new Card( values, selector, () => imagePreview.open(card), api);
+  const card = new Card( values, selector, () => imagePreview.open(card),
+    () => confirmDeletePopup.open(card), api);
   return card.create(currentUser.getId());
 }
 
@@ -153,5 +156,14 @@ api.getInitialData()
   .catch(err => catchError(err));
 
 //Удаление карточки с сервера
-
+const confirmDeletePopup = new PopupConfirmAction(deletePopup, card => {
+  api.deleteCard(card.getId())
+    .then(() => {
+      card._content.remove();
+      card._content = null;
+    })
+    .catch(err => catchError(err));
+  confirmDeletePopup.close();
+});
+confirmDeletePopup.setEventListeners();
 

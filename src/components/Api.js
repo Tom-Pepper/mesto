@@ -113,4 +113,20 @@ export class Api {
       .catch(err => this._errorMessage(err));
   }
 
+  deleteCard(id) {
+    return fetch(`${this._url}cards/${id}`,
+      {
+        method: "DELETE",
+        headers: this._headers,
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return this._errorMessage(res);
+        }
+      })
+      .catch(err => this._errorMessage(err));
+  }
+
 }
