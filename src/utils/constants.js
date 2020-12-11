@@ -23,7 +23,7 @@ export const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form'
 export const editAvatarPopup = document.querySelector('.popup__edit-avatar');
 export const formEditAvatar = editAvatarPopup.querySelector('.popup__form-edit-avatar');
 
-export const avatarChangeButton = document.querySelector('.profile__avatar');
+export const avatarChangeButton = document.querySelector('.profile__avatar-wrapper');
 
 export const nameToEdit = document.querySelector(".profile__info-name");
 export const jobToEdit = document.querySelector(".profile__info-job");

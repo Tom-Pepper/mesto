@@ -11,10 +11,15 @@
     <header class="header">
       <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип проекта 'Место'">
     </header>
+
     <main class="content">
+
       <section class="profile">
         <div class="profile__wrapper">
-          <img class="profile__avatar" src="" alt="Аватар пользователя">
+          <div class="profile__avatar-wrapper">
+            <button type="button" class="profile__avatar-edit-button"></button>
+            <img class="profile__avatar" src="" alt="Аватар пользователя">
+          </div>
           <div class="profile__info">
             <h1 class="profile__info-name"></h1>
             <p class="profile__info-job"></p>
@@ -23,6 +28,7 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
+
       <section class="elements"></section>
     </main>
     <footer class="footer">

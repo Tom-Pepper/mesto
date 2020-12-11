@@ -147,5 +147,4 @@ export class Api {
       })
       .catch(err => this._errorMessage(err));
   }
-
 }

@@ -1,4 +1,4 @@
-import { catchError } from "../pages/index.js";
+import { catchError } from "../pages/";
 
 // Класс добавления новой карточки, с функционалом лайка и удаления
 export class Card {
@@ -65,7 +65,9 @@ export class Card {
   }
 
   create(profileId) {
-    this._content = this._template.querySelector('.element').cloneNode(true);
+    this._content = this._template
+      .querySelector('.element')
+      .cloneNode(true);
 
     this._deleteButton = this._content.querySelector('.element__delete-button');
     this._likeButton = this._content.querySelector('.element__like-button');

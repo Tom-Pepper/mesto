@@ -27,7 +27,7 @@ import {
   deletePopup,
   editAvatarPopup,
   formEditAvatar,
-  avatarChangeButton
+  avatarChangeButton,
 } from "../utils/constants.js";
 
 // Создание объекта для карточки- превьюхи
@@ -41,17 +41,15 @@ function createCard(values, selector, api) {
   return card.create(currentUser.getId());
 }
 
-// Валидация поп-апов профиля, добавления карточки, обновления аватарки
-const editProfileForm = new FormValidator(validationObj, formElement);
-editProfileForm.enableValidation();
-const newPlaceForm = new FormValidator(validationObj, formAddPlace);
-newPlaceForm.enableValidation();
-const editAvatarForm = new FormValidator(validationObj, formEditAvatar);
-editAvatarForm.enableValidation();
-
-//------------------------------------------------------------------------
-//----------------------------API-----------------------------
-//------------------------------------------------------------------------
+//Функция для отображения состояния загрузки (UX, лоадер)
+function buttonLoader(isLoading, popup) {
+  const button = popup.querySelector('.popup__button');
+  if(isLoading) {
+    button.innerText = 'Сохранение...';
+  } else {
+    button.innerText = 'Сохранить';
+  }
+}
 
 //Функция возврата текста ошибки для catch'a
 export function catchError(err) {
@@ -74,12 +72,12 @@ const currentUser = new UserInfo({
   avatar: profileAvatar
 });
 
-//Берем данные пользователя и все карточки с сервера, и внутри этого промиса вся логика по созданию карточек,
-//редактированию профиля и т.д.
+//Тянем карточки и информацию пользователя с сервера, с помощью Promise.all
 api.getInitialData()
   .then(data => {
     const [userInfo, cards] = data;
 
+    //Начальные данные для профиля с сервера
     currentUser.setUserInfo({
       name: userInfo.name,
       job: userInfo.about,
@@ -87,17 +85,20 @@ api.getInitialData()
     })
     currentUser.setUserAvatar(userInfo.avatar);
 
+    //Изменение данных профиля
     const profilePopup = new PopupWithForm(
       {
         popup: popupEditProfile,
         submitFormCallback: (event, values) => {
           event.preventDefault();
+          buttonLoader(true, popupEditProfile);
           api.editProfile(values['profile-name'], values['profile-job'])
             .then(() => {
               currentUser.setUserInfo({
                 name: values['profile-name'],
                 job: values['profile-job']
               });
+              buttonLoader(false, popupEditProfile);
               profilePopup.close();
             })
             .catch(err => catchError(err));
@@ -106,16 +107,7 @@ api.getInitialData()
     );
     profilePopup.setEventListeners();
 
-//Кнопка редактирования профиля (обработчик клика)
-    buttonEditProfile.addEventListener('click', () => {
-      const profileInfo = currentUser.getUserInfo();
-      nameInput.value = profileInfo.name;
-      jobInput.value = profileInfo.job;
-      editProfileForm.clearErrors(popupEditProfile);
-      profilePopup.open();
-    });
-
-//Отрисовка массива карточек с сервера
+    //Отрисовка массива карточек с сервера
     const cardsSection = new Section({
       items: cards,
       renderer: (item) => cardsSection.addItem(
@@ -128,11 +120,12 @@ api.getInitialData()
         }, '.elements__template', api), true)}, cardPosition);
     cardsSection.renderItems();
 
-//Добавление новой карточки
+    //Добавление новой карточки
     const placePopup = new PopupWithForm({
       popup: addPlacePopup,
       submitFormCallback: (event, values) => {
         event.preventDefault();
+        buttonLoader(true, addPlacePopup)
         api.addNewCard(values['place-name'], values['place-link'])
           .then((res) => {
             const newCard = createCard(
@@ -145,6 +138,7 @@ api.getInitialData()
                 }
               }, '.elements__template', api);
             cardsSection.addItem(newCard, false);
+            buttonLoader(false, addPlacePopup);
             placePopup.close();
           })
           .catch(err => catchError(err));
@@ -152,7 +146,16 @@ api.getInitialData()
     });
     placePopup.setEventListeners();
 
-//Кнопка добавления новой карточки (обработчик клика)
+    //Обработчик кнопки редактирования данных профиля
+    buttonEditProfile.addEventListener('click', () => {
+      const profileInfo = currentUser.getUserInfo();
+      nameInput.value = profileInfo.name;
+      jobInput.value = profileInfo.job;
+      editProfileForm.clearErrors(popupEditProfile);
+      profilePopup.open();
+    });
+
+    //Обработчик нопки добавления новой карточки
     buttonAddPlace.addEventListener('click', () => {
       newPlaceForm.clearErrors(addPlacePopup);
       placePopup.open();
@@ -177,9 +180,11 @@ const editAvatar = new PopupWithForm({
   popup: editAvatarPopup,
   submitFormCallback: (event, value) => {
     event.preventDefault();
+    buttonLoader(true, editAvatarPopup);
     api.uploadAvatar(value['avatar'])
       .then(() => {
         currentUser.setUserAvatar(value['avatar']);
+        buttonLoader(false, editAvatarPopup);
         editAvatar.close();
       })
       .catch(err => catchError(err));
@@ -192,3 +197,11 @@ avatarChangeButton.addEventListener('click', () => {
   editAvatarForm.clearErrors(editAvatarPopup);
   editAvatar.open();
 })
+
+// Валидация поп-апов профиля, добавления карточки, обновления аватарки
+const editProfileForm = new FormValidator(validationObj, formElement);
+editProfileForm.enableValidation();
+const newPlaceForm = new FormValidator(validationObj, formAddPlace);
+newPlaceForm.enableValidation();
+const editAvatarForm = new FormValidator(validationObj, formEditAvatar);
+editAvatarForm.enableValidation();
