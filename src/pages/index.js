@@ -8,6 +8,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 import { PopupConfirmAction } from "../components/PopupConfirmAction.js";
+import { PopupWithError } from "../components/PopupWithError.js";
 
 import {
   validationObj,
@@ -28,6 +29,13 @@ import {
   editAvatarPopup,
   formEditAvatar,
   avatarChangeButton,
+  saveChangesIsLoading,
+  submitProfileOriginalText,
+  addPlaceOriginalText,
+  deleteOriginalText,
+  deleteIsLoading,
+  errorPopup,
+  errorCloseButton
 } from "../utils/constants.js";
 
 // Создание объекта для карточки- превьюхи
@@ -42,18 +50,26 @@ function createCard(values, selector, api) {
 }
 
 //Функция для отображения состояния загрузки (UX, лоадер)
-function buttonLoader(isLoading, popup) {
+function buttonLoader(isLoading, popup, loadingText, originalText) {
   const button = popup.querySelector('.popup__button');
   if(isLoading) {
-    button.innerText = 'Сохранение...';
+    button.textContent = loadingText;
   } else {
-    button.innerText = 'Сохранить';
+    button.textContent = originalText;
   }
 }
 
+const externalErrorPopup = new PopupWithError(errorPopup);
+externalErrorPopup.setEventListeners();
+
+errorCloseButton.addEventListener('click', () => externalErrorPopup.close());
+
+console.log(externalErrorPopup)
+
 //Функция возврата текста ошибки для catch'a
 export function catchError(err) {
-  return `Что-то пошло не так. Ошибка: ${err.status}. ${err.message}`;
+  externalErrorPopup.showError(`Что-то пошло не так. Ошибка ${err.status}`);
+  externalErrorPopup.open();
 }
 
 // Объект с токеном и URL для доступа к серверу
@@ -63,7 +79,7 @@ const api = new Api({
     authorization: "36f02e32-425e-4cd6-9a5e-ab45df68f83b",
     "Content-Type": "application/json"
   }
-});
+}, () => catchError);
 
 //Начальные данные пользователя
 const currentUser = new UserInfo({
@@ -91,14 +107,14 @@ api.getInitialData()
         popup: popupEditProfile,
         submitFormCallback: (event, values) => {
           event.preventDefault();
-          buttonLoader(true, popupEditProfile);
+          buttonLoader(true, popupEditProfile, saveChangesIsLoading, submitProfileOriginalText);
           api.editProfile(values['profile-name'], values['profile-job'])
             .then(() => {
               currentUser.setUserInfo({
                 name: values['profile-name'],
                 job: values['profile-job']
               });
-              buttonLoader(false, popupEditProfile);
+              buttonLoader(false, popupEditProfile, saveChangesIsLoading, submitProfileOriginalText);
               profilePopup.close();
             })
             .catch(err => catchError(err));
@@ -125,7 +141,7 @@ api.getInitialData()
       popup: addPlacePopup,
       submitFormCallback: (event, values) => {
         event.preventDefault();
-        buttonLoader(true, addPlacePopup)
+        buttonLoader(true, addPlacePopup, saveChangesIsLoading, addPlaceOriginalText);
         api.addNewCard(values['place-name'], values['place-link'])
           .then((res) => {
             const newCard = createCard(
@@ -138,7 +154,7 @@ api.getInitialData()
                 }
               }, '.elements__template', api);
             cardsSection.addItem(newCard, false);
-            buttonLoader(false, addPlacePopup);
+            buttonLoader(false, addPlacePopup, saveChangesIsLoading, addPlaceOriginalText);
             placePopup.close();
           })
           .catch(err => catchError(err));
@@ -165,10 +181,12 @@ api.getInitialData()
 
 //Удаление карточки с сервера
 const confirmDeletePopup = new PopupConfirmAction(deletePopup, card => {
+  buttonLoader(true, deletePopup, deleteIsLoading, deleteOriginalText);
   api.deleteCard(card.getId())
     .then(() => {
       card._content.remove();
       card._content = null;
+      buttonLoader(false, deletePopup, deleteIsLoading, deleteOriginalText);
     })
     .catch(err => catchError(err));
   confirmDeletePopup.close();
@@ -180,11 +198,11 @@ const editAvatar = new PopupWithForm({
   popup: editAvatarPopup,
   submitFormCallback: (event, value) => {
     event.preventDefault();
-    buttonLoader(true, editAvatarPopup);
+    buttonLoader(true, editAvatarPopup, saveChangesIsLoading, submitProfileOriginalText);
     api.uploadAvatar(value['avatar'])
       .then(() => {
         currentUser.setUserAvatar(value['avatar']);
-        buttonLoader(false, editAvatarPopup);
+        buttonLoader(false, editAvatarPopup, saveChangesIsLoading, submitProfileOriginalText);
         editAvatar.close();
       })
       .catch(err => catchError(err));

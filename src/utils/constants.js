@@ -8,7 +8,7 @@ export const validationObj = {
   inputErrorClass: 'popup__input_type_error'
 };
 
-// Констарнты - селекторы
+// Констарнты - DOM- элементы
 export const buttonEditProfile = document.querySelector(".profile__edit-button");
 export const buttonAddPlace = document.querySelector(".profile__add-button");
 
@@ -22,8 +22,10 @@ export const formAddPlace = addPlacePopup.querySelector('.popup-new-place__form'
 
 export const editAvatarPopup = document.querySelector('.popup__edit-avatar');
 export const formEditAvatar = editAvatarPopup.querySelector('.popup__form-edit-avatar');
+export const errorPopup = document.querySelector('.popup__error');
 
 export const avatarChangeButton = document.querySelector('.profile__avatar-wrapper');
+export const errorCloseButton = errorPopup.querySelector('.popup__error-button');
 
 export const nameToEdit = document.querySelector(".profile__info-name");
 export const jobToEdit = document.querySelector(".profile__info-job");
@@ -32,3 +34,9 @@ export const cardPosition = document.querySelector('.elements');
 export const imageFullSize = document.querySelector('.popup-image');
 
 export const deletePopup = document.querySelector('.popup__confirm-delete');
+
+export const submitProfileOriginalText = 'Сохранить';
+export const addPlaceOriginalText = 'Создать';
+export const deleteOriginalText = 'Да';
+export const deleteIsLoading = 'Удаление...';
+export const saveChangesIsLoading = 'Сохранение...';

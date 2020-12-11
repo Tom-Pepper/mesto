@@ -1,11 +1,16 @@
 export class Api {
-  constructor(config) {
+  constructor(config, errorHandler) {
     this._url = config.url;
     this._headers = config.headers;
+    this._errorHandler = errorHandler;
   }
 
-  _errorMessage(err) {
-    return Promise.reject(`Что- то пошло не так. Ошибка: ${err.status}. ${err.message}`)
+  _getResponse(res) {
+    if(!res.ok) {
+      return Promise.reject(this._errorHandler(`Что- то пошло не так. Ошибка ${res.status}`));
+    } else {
+      return res.json();
+    }
   }
 
   getCards() {
@@ -13,13 +18,10 @@ export class Api {
       headers: this._headers
     })
       .then(res => {
-        if(res.ok) {
-          return res.json();
-        } else {
-          return this._errorMessage(res);
-        }
+        return res.json();
+        // this._getResponse(res)
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   getUserData() {
@@ -33,8 +35,9 @@ export class Api {
         } else {
           return this._errorMessage(res);
         }
+        // this._getResponse(res)
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   getInitialData() {
@@ -55,10 +58,10 @@ export class Api {
         if (res.ok) {
           return res.json();
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   addNewCard(name, link) {
@@ -75,10 +78,10 @@ export class Api {
         if (res.ok) {
           return res.json()
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   likeCard(id) {
@@ -91,10 +94,10 @@ export class Api {
         if (res.ok) {
           return res.json()
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   dislikeCard(id) {
@@ -107,10 +110,10 @@ export class Api {
         if (res.ok) {
           return res.json()
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   deleteCard(id) {
@@ -123,10 +126,10 @@ export class Api {
         if (res.ok) {
           return res.json()
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 
   uploadAvatar(url) {
@@ -142,9 +145,9 @@ export class Api {
         if (res.ok) {
           return res.json();
         } else {
-          return this._errorMessage(res);
+          // return this._errorMessage(res);
         }
       })
-      .catch(err => this._errorMessage(err));
+      // .catch(err => this._errorMessage(err));
   }
 }

@@ -51,6 +51,10 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__confirm-delete/popup__confirm-delete.css);
 @import url(../blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error-text/popup__error-text.css);
+@import url(../blocks/popup/__title/_error/popup__title_error.css);
+@import url(../blocks/popup/__error-button/popup__error-button.css);
 
 /* Cтили фото в полном размере (pop-up) */
 @import url(../blocks/popup-image/popup-image.css);
