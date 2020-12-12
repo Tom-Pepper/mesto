@@ -7,6 +7,9 @@ export class PopupWithError extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
+    this._popup
+      .querySelector('.popup__error-button')
+      .addEventListener('click', () => this.close());
   }
 
   showError(error) {

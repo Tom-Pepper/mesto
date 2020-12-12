@@ -6,10 +6,10 @@ export class Api {
   }
 
   _getResponse(res) {
-    if(!res.ok) {
-      return Promise.reject(this._errorHandler(`Что- то пошло не так. Ошибка ${res.status}`));
-    } else {
+    if(res.ok) {
       return res.json();
+    } else {
+      return Promise.reject(this._errorHandler(res.status));
     }
   }
 
@@ -17,11 +17,8 @@ export class Api {
     return fetch(`${this._url}cards`, {
       headers: this._headers
     })
-      .then(res => {
-        return res.json();
-        // this._getResponse(res)
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
+      .catch(err => console.log(err));
   }
 
   getUserData() {
@@ -29,15 +26,7 @@ export class Api {
       {
         headers: this._headers
       })
-      .then(res => {
-        if(res.ok) {
-          return res.json();
-        } else {
-          return this._errorMessage(res);
-        }
-        // this._getResponse(res)
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   getInitialData() {
@@ -54,14 +43,7 @@ export class Api {
           about: job
         })
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   addNewCard(name, link) {
@@ -74,14 +56,7 @@ export class Api {
           link: link
         })
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   likeCard(id) {
@@ -90,14 +65,7 @@ export class Api {
         method: "PUT",
         headers: this._headers
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   dislikeCard(id) {
@@ -106,14 +74,7 @@ export class Api {
         method: "DELETE",
         headers: this._headers,
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   deleteCard(id) {
@@ -122,14 +83,7 @@ export class Api {
         method: "DELETE",
         headers: this._headers,
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 
   uploadAvatar(url) {
@@ -141,13 +95,6 @@ export class Api {
           avatar: url
         })
       })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          // return this._errorMessage(res);
-        }
-      })
-      // .catch(err => this._errorMessage(err));
+      .then(res => this._getResponse(res))
   }
 }

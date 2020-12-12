@@ -59,17 +59,15 @@ function buttonLoader(isLoading, popup, loadingText, originalText) {
   }
 }
 
-const externalErrorPopup = new PopupWithError(errorPopup);
-externalErrorPopup.setEventListeners();
-
-errorCloseButton.addEventListener('click', () => externalErrorPopup.close());
-
-console.log(externalErrorPopup)
+//Объект поп-апа ошибки
+const serverErrorPopup = new PopupWithError(errorPopup);
+serverErrorPopup.setEventListeners();
 
 //Функция возврата текста ошибки для catch'a
 export function catchError(err) {
-  externalErrorPopup.showError(`Что-то пошло не так. Ошибка ${err.status}`);
-  externalErrorPopup.open();
+  serverErrorPopup.showError(`Что-то пошло не так. Ошибка "${err}". Перезагрузите страницу,
+  или обратитесь в поддержку.`);
+  serverErrorPopup.open();
 }
 
 // Объект с токеном и URL для доступа к серверу
@@ -79,7 +77,7 @@ const api = new Api({
     authorization: "36f02e32-425e-4cd6-9a5e-ab45df68f83b",
     "Content-Type": "application/json"
   }
-}, () => catchError);
+}, catchError);
 
 //Начальные данные пользователя
 const currentUser = new UserInfo({
@@ -117,7 +115,7 @@ api.getInitialData()
               buttonLoader(false, popupEditProfile, saveChangesIsLoading, submitProfileOriginalText);
               profilePopup.close();
             })
-            .catch(err => catchError(err));
+            .catch(err => catchError(err.status));
         }
       }
     );
@@ -157,7 +155,7 @@ api.getInitialData()
             buttonLoader(false, addPlacePopup, saveChangesIsLoading, addPlaceOriginalText);
             placePopup.close();
           })
-          .catch(err => catchError(err));
+          .catch(err => catchError(err.status));
       }
     });
     placePopup.setEventListeners();
