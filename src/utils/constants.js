@@ -1,3 +1,7 @@
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithError } from "../components/PopupWithError.js";
+import { UserInfo } from "../components/UserInfo.js";
+
 // Объект для валидации полей
 export const validationObj = {
   formSelector: '.popup__form',
@@ -25,7 +29,6 @@ export const formEditAvatar = editAvatarPopup.querySelector('.popup__form-edit-a
 export const errorPopup = document.querySelector('.popup__error');
 
 export const avatarChangeButton = document.querySelector('.profile__avatar-wrapper');
-export const errorCloseButton = errorPopup.querySelector('.popup__error-button');
 
 export const nameToEdit = document.querySelector(".profile__info-name");
 export const jobToEdit = document.querySelector(".profile__info-job");
@@ -40,3 +43,18 @@ export const addPlaceOriginalText = 'Создать';
 export const deleteOriginalText = 'Да';
 export const deleteIsLoading = 'Удаление...';
 export const saveChangesIsLoading = 'Сохранение...';
+
+//Объект для картинки в полном разрешении (окно при клике на фото карточки)
+export const imagePreview = new PopupWithImage(imageFullSize);
+imagePreview.setEventListeners();
+
+//Объект поп-апа показа текста ошибки
+export const serverErrorPopup = new PopupWithError(errorPopup);
+serverErrorPopup.setEventListeners();
+
+//Начальные данные пользователя при загрузке
+export const currentUser = new UserInfo({
+  name: nameToEdit,
+  job: jobToEdit,
+  avatar: profileAvatar
+});

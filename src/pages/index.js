@@ -3,12 +3,9 @@ import '../pages/index.css';
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
-import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
-import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 import { PopupConfirmAction } from "../components/PopupConfirmAction.js";
-import { PopupWithError } from "../components/PopupWithError.js";
 
 import {
   validationObj,
@@ -19,12 +16,8 @@ import {
   formElement,
   nameInput,
   jobInput,
-  nameToEdit,
-  jobToEdit,
-  profileAvatar,
   formAddPlace,
   cardPosition,
-  imageFullSize,
   deletePopup,
   editAvatarPopup,
   formEditAvatar,
@@ -34,13 +27,10 @@ import {
   addPlaceOriginalText,
   deleteOriginalText,
   deleteIsLoading,
-  errorPopup,
-  errorCloseButton
+  imagePreview,
+  serverErrorPopup,
+  currentUser
 } from "../utils/constants.js";
-
-// Создание объекта для карточки- превьюхи
-const imagePreview = new PopupWithImage(imageFullSize);
-imagePreview.setEventListeners();
 
 // Создание объекта карточки
 function createCard(values, selector, api) {
@@ -59,10 +49,6 @@ function buttonLoader(isLoading, popup, loadingText, originalText) {
   }
 }
 
-//Объект поп-апа ошибки
-const serverErrorPopup = new PopupWithError(errorPopup);
-serverErrorPopup.setEventListeners();
-
 //Функция возврата текста ошибки для catch'a
 export function catchError(err) {
   serverErrorPopup.showError(`Что-то пошло не так. Ошибка "${err}". Перезагрузите страницу,
@@ -78,13 +64,6 @@ const api = new Api({
     "Content-Type": "application/json"
   }
 }, catchError);
-
-//Начальные данные пользователя
-const currentUser = new UserInfo({
-  name: nameToEdit,
-  job: jobToEdit,
-  avatar: profileAvatar
-});
 
 //Тянем карточки и информацию пользователя с сервера, с помощью Promise.all
 api.getInitialData()
