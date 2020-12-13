@@ -3,6 +3,8 @@ import { Popup } from "./Popup.js";
 export class PopupWithImage extends Popup {
   constructor(popup) {
     super(popup);
+    this._preview = this._popup.querySelector('.popup-image__preview');
+    this._title = this._popup.querySelector('.popup-image__title')
   }
 
   close() {
@@ -11,12 +13,9 @@ export class PopupWithImage extends Popup {
 
   open(card) {
     const name = card.name;
-    const preview = this._popup.querySelector('.popup-image__preview');
-    preview.src = card.link;
-    preview.alt = name;
-    this._popup
-      .querySelector('.popup-image__title')
-      .textContent = name;
+    this._preview.src = card.link;
+    this._preview.alt = name;
+    this._title.textContent = name;
     super.open();
   }
 

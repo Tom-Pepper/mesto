@@ -32,21 +32,15 @@ import {
   currentUser
 } from "../utils/constants.js";
 
+import {
+  buttonLoader
+} from "../utils/utils.js";
+
 // Создание объекта карточки
 function createCard(values, selector, api) {
   const card = new Card( values, selector, () => imagePreview.open(card),
     () => confirmDeletePopup.open(card), api, catchError);
   return card.create(currentUser.getId());
-}
-
-//Функция для отображения состояния загрузки (UX, лоадер)
-function buttonLoader(isLoading, popup, loadingText, originalText) {
-  const button = popup.querySelector('.popup__button');
-  if(isLoading) {
-    button.textContent = loadingText;
-  } else {
-    button.textContent = originalText;
-  }
 }
 
 //Функция возврата текста ошибки для catch'a
@@ -91,10 +85,13 @@ api.getInitialData()
                 name: values['profile-name'],
                 job: values['profile-job']
               });
-              buttonLoader(false, popupEditProfile, saveChangesIsLoading, submitProfileOriginalText);
               profilePopup.close();
             })
-            .catch(err => catchError(err.status));
+            .catch(err => catchError(err.status))
+            .finally(() => {
+              buttonLoader(false, popupEditProfile, saveChangesIsLoading, submitProfileOriginalText);
+            }
+        )
         }
       }
     );
@@ -131,10 +128,12 @@ api.getInitialData()
                 }
               }, '.elements__template', api);
             cardsSection.addItem(newCard, false);
-            buttonLoader(false, addPlacePopup, saveChangesIsLoading, addPlaceOriginalText);
             placePopup.close();
           })
-          .catch(err => catchError(err.status));
+          .catch(err => catchError(err.status))
+          .then(() => {
+            buttonLoader(false, addPlacePopup, saveChangesIsLoading, addPlaceOriginalText);
+          })
       }
     });
     placePopup.setEventListeners();
@@ -161,12 +160,13 @@ const confirmDeletePopup = new PopupConfirmAction(deletePopup, card => {
   buttonLoader(true, deletePopup, deleteIsLoading, deleteOriginalText);
   api.deleteCard(card.getId())
     .then(() => {
-      card._content.remove();
-      card._content = null;
+      card.removeCard();
+      confirmDeletePopup.close();
+    })
+    .catch(err => catchError(err))
+    .finally(() => {
       buttonLoader(false, deletePopup, deleteIsLoading, deleteOriginalText);
     })
-    .catch(err => catchError(err));
-  confirmDeletePopup.close();
 });
 confirmDeletePopup.setEventListeners();
 
@@ -179,10 +179,12 @@ const editAvatar = new PopupWithForm({
     api.uploadAvatar(value['avatar'])
       .then(() => {
         currentUser.setUserAvatar(value['avatar']);
-        buttonLoader(false, editAvatarPopup, saveChangesIsLoading, submitProfileOriginalText);
         editAvatar.close();
       })
-      .catch(err => catchError(err));
+      .catch(err => catchError(err))
+      .finally(() => {
+        buttonLoader(false, editAvatarPopup, saveChangesIsLoading, submitProfileOriginalText);
+      })
   }
 });
 editAvatar.setEventListeners();

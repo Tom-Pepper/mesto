@@ -58,6 +58,11 @@ export class Card {
     this._deleteCard();
   }
 
+  removeCard() {
+    this._content.remove();
+    this._content = null;
+  }
+
   _setEventListeners() {
     this._likeButton.addEventListener('click', this._like);
     this.image.addEventListener('click', this._openImage);
