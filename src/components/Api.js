@@ -18,7 +18,6 @@ export class Api {
       headers: this._headers
     })
       .then(res => this._getResponse(res))
-      .catch(err => console.log(err));
   }
 
   getUserData() {

@@ -1,5 +1,3 @@
-import { catchError } from "../pages/";
-
 // Класс добавления новой карточки, с функционалом лайка и удаления
 export class Card {
   constructor(
@@ -12,7 +10,8 @@ export class Card {
     templateSelector,
     openImage,
     deleteCardCallBack,
-    api
+    api,
+    catchErrorCallback
   ) {
     this.name = name;
     this.link = link;
@@ -23,6 +22,7 @@ export class Card {
     this._openImage = openImage;
     this._deleteCard = deleteCardCallBack;
     this._api = api;
+    this._catcherror = catchErrorCallback;
 
     this._like = this._like.bind(this);
     this._delete = this._delete.bind(this);
@@ -39,14 +39,14 @@ export class Card {
           this._likeToggle();
           this._setLikes(res.likes.length);
         })
-        .catch(err => catchError(err));
+        .catch(err => this._catcherror(err));
     } else {
       this._api.likeCard(this._id)
         .then(res => {
           this._likeToggle();
           this._setLikes(res.likes.length);
         })
-        .catch(err => catchError(err));
+        .catch(err => this._catcherror(err));
     }
   }
 

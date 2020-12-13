@@ -35,7 +35,7 @@ import {
 // Создание объекта карточки
 function createCard(values, selector, api) {
   const card = new Card( values, selector, () => imagePreview.open(card),
-    () => confirmDeletePopup.open(card), api);
+    () => confirmDeletePopup.open(card), api, catchError);
   return card.create(currentUser.getId());
 }
 
